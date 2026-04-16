@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang='zh-Hant'>
+<head>
+<meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<base target='_blank'/>
+<title>Examination</title>
+</head>
+<body>
+<style>
+html, body {
+	width:100%; height:100%; border:0; margin:0; padding:0; overflow:hidden;
+}
+body { 
+	font-size: 4vmin;
+	display: flex; flex-flow: column nowrap;
+}
+header {
+	background: black; color: yellow;
+	display: flex; flex-flow:row nowrap; justify-content:space-between; align-items:flex-start;
+	padding: 0.7vh 0.7vw;
+}
+main {
+	background: white; color: black;
+	flex:1 1 auto; width:100%; height:100%; overflow-y:auto;
+	border:0; margin:0; padding:0; overflow:hidden;
+}
+footer {
+	font-size:60%; background: black; color: lightgreen;
+	display:flex; flex-flow:row nowrap; justify-content:space-between; align-items:flex-end;
+}
+
+main[data-pid]:not(.selected) { display:none; }
+
+.ListItem {
+	display:flex;flex-flow:row nowrap;
+	margin:auto; padding:2px 4px; max-width:90%;
+	border-bottom:1px solid silver;
+}
+.ListItem:hover { border-color:blue; background:#def; }
+.ListItem>:not([data-h]) { flex:1 1 auto; }
+
+table { margin:auto; }
+table th, table td { border:1px solid silver; }
+
+[data-h]:hover { text-shadow: 2px 2px 4px gold; }
+section { margin:0.5%; padding:1%; border:1px solid silver; border-radius:1vmin; }
+section.fold .fold { display:none; }
+</style>
+
+<header>
+	<b data-h='go:home'>classPiers Study Center</b>
+</header>
+
+<main data-pid='home' class="selected">
+	<div style='padding:2%'>
+		<button data-h='go:material'>Material: 教材</button>
+		<button data-h='go:quiz'>Quiz: 測驗</button>
+	</div>
+</main>
+
+<main data-pid='material'>
+	<div style='text-align:center;'>Material 教材</div>
+	<div class='ListItem'>
+		<div>Python</div>
+		<div data-h='go:url:Python/index.html'>📖</div>
+		<div data-h='go:url:Python/index.html?f=quizgen'>✍️</div>
+	</div>
+</main>
+
+<main data-pid='quiz'>
+<section class='fold'>
+	<span data-h="flag:⊖⊕fold">⊕</span> List of Examination Templates
+	<div class='fold' data-id='list:quiz'><div class='ListItem'></div></div>
+</section>
+<section class='fold'>
+	<span data-h="flag:⊖⊕fold">⊕</span> List of Examination Participants
+	<div class='fold' data-id='list:users'><div class='ListItem'></div></div>
+</section>
+</main>
+
+<footer>
+	<span>&copy; Cyberpiers Co.Ltd,</span>
+	<span align='right'>2026</span>
+</footer>
+
+<script>
+	window.addEventListener('hashchange', (event) => {
+		const tid=window.location.hash||'#home';
+		Array.from(document.querySelectorAll('main[data-pid]')).forEach(
+			(p)=>p.classList[`#${p.dataset.pid}` === tid ? 'add' : 'remove']('selected')
+		);
+	});
+	(function(C){
+		function handle (e,s) {
+			try {
+				while (!e.matches('[data-h]')) e=e.parentNode;
+				const [f,a,b,c]=e.dataset.h.split(':');
+				switch (f) {
+				case 'go':
+					if ('url' !== a) {
+						if (history.replaceState)
+							history.replaceState(null, null, '#' + a);
+						else location.hash = '#' + a;
+						window.dispatchEvent(new HashChangeEvent("hashchange"));
+					} else window.open(b);
+					break;
+				case 'flag':
+					if (!s) for(s=e; !s.matches('section'); s=s.parentNode);
+					((a,i)=>{
+						e.textContent=a[i];
+						s.classList[i?'add':'remove'](a.substring(2));
+					}).apply(this, a[0]===e.textContent ? [a,1] : [a,0]);
+					break;
+				}
+			} catch(x) { }
+		}
+		C.addEventListener('click',(evt)=>handle(evt.target));
+		window.dispatchEvent(new HashChangeEvent("hashchange"));
+	})(document.currentScript.parentNode);
+</script>
+</html>

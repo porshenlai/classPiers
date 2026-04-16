@@ -1,0 +1,4429 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="/App/slide.js"></script>
+</head>
+<body style='opacity:0'>
+<div id="content">
+
+<style>
+.sub { font-weight:bold; background:silver; }
+.explain { font-size:70%; }
+
+.hl-kw { color:#c792ea; }
+.hl-fn { color:#82aaff; }
+.hl-str { color:#ecc48d; }
+.hl-nb	{ color:#f78c6c; }
+.hl-cm	{ color:#5c6773; font-style:italic;} 
+table small { color:#666; }
+
+.C3Tbl { display:flex;flex-flow:row wrap;gap:1vw 2%; }
+.C3Tbl [data-x^="card"] { width:32%;padding-top:32%; }
+.origin { display:flex;flex-flow:column nowrap;justify-content:center;align-items:center; }
+
+.syntax th { background:#eee; }
+.syntax .K { color:red; }
+.syntax .V { color:green; }
+
+[xlang="markdown"] table { width:80%; margin-left:auto; margin-right:auto; }
+[xlang="markdown"] table td { border:2px solid silver; padding:0px 16px; }
+
+.frame { font-size:2vw; padding-left:4px; }
+
+.rtable { border-collapse: separate; border-spacing: 8px 2px; margin:auto; }
+.rtable td { text-align:right; border-bottom:2px outset silver; padding:2px 8px; }
+.rtable th { border:2px outset silver; padding:2px 8px; }
+
+.ltable { border-collapse: separate; border-spacing: 8px 2px; margin:auto; }
+.ltable td { border-bottom:2px outset silver; padding:2px 8px; }
+.ltable th { border:2px outset silver; padding:2px 8px; }
+.ltable td>div, .ltable th>div, .rtable td>div, .rtable th>div { font-size:80%; color:green;font-weight:bold; }
+
+.al { text-align:left; }
+.ac { text-align:center; }
+.ar { text-align:right; }
+
+.black { color:black; }
+.red { color:red; }
+.green { color:green; }
+.blue { color:blue; }
+.brown { color:brown; }
+
+.QMix { display:flex;overflow:auto;align-items:center; }
+</style>
+
+<section class='cm'>
+	<h1 class="title">Python, An Introduction to</h1>
+	<div>
+		<p class="subtitle">for ITS Python Certification</p>
+		<p class="meta">
+			<div style="font-weight:bold">Lecturer: <a href="mailto:porshenlai@gm.chihlee.edu.tw">Porshen Lai</a></div>
+			<div><a href="https://fd100.chihlee.edu.tw/">Department of Finance</a>,</div>
+			<div><a href="https://www.chihlee.edu.tw/">Chihlee University of Technology</a></div>
+			<div style="text-align:right">2025, Winter</div>
+		</p>
+	</div>
+</section>
+
+<!--{{{ PART-1: Expression -->
+
+<section data-ks='P_EX'>
+	<h2>運算元: 資料型態</h2><!--{{{ Data Type -->
+	<div class='C3Tbl'>
+		<div data-x="card"><div class='front origin'>
+			<div>123</div>
+			<div>-123</div>
+			<div>0</div>
+		</div><div class='back origin'>
+			<div>整數</div>
+			<div>Integer</div>
+			<div>int</div>
+		</div></div>
+		<div data-x="card"><div class='front origin'>
+			<div>1.23</div>
+			<div>-1.23</div>
+			<div>0.0</div>
+		</div><div class='back origin'>
+			<div>浮點數</div>
+			<div>Float</div>
+			<div>float</div>
+		</div></div>
+		<div data-x="card"><div class='front origin'>
+			<div>"1.23"</div>
+			<div>'1.23'</div>
+			<div>"""1.<br/>23"""</div>
+		</div><div class='back origin'>
+			<div>字串</div>
+			<div>String</div>
+			<div>str</div>
+		</div></div>
+		<div data-x="card"><div class='front origin'>
+			<div>True</div>
+			<div>False</div>
+		</div><div class='back origin'>
+			<div>布林值</div>
+			<div>Boolean</div>
+			<div>bool</div>
+		</div></div>
+		<div data-x="card"><div class='front origin'>
+			<div>1.23+4.56j</div>
+			<div>-1.23-4.56j</div>
+			<div>0+0j</div>
+		</div><div class='back origin'>
+			<div>複數</div>
+			<div>Complex</div>
+			<div>complex</div>
+		</div></div>
+		<div data-x="card"><div class='front origin'>
+			<div>b"1.23"</div>
+			<div>b'1.23'</div>
+			<div>b"""1.<br/>23"""</div>
+		</div><div class='back origin'>
+			<div>位元</div>
+			<div>Bytes</div>
+			<div>bytes</div>
+		</div></div>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_EX'>
+	<h2>🔢 內建函數: 型別轉換</h2><!--{{{ Built-in Functions: Type Conversion --> 
+	<table border='1' cellspacing='0' cellpadding='8' align='center' width='100%' style='font-size:70%'><thead><tr>
+		<th><strong>函式</strong></th><th><strong>功能</strong></th><th><strong>範例</strong></th><th><strong>結果</strong></th>
+	</tr></thead><tbody><tr>
+		<td>int(x)</td>
+		<td>將 <strong>x</strong> 轉換成整數</td>
+		<td>int(34.21)</td>
+		<td>34</td>
+	</tr><tr>
+		<td>float(x)</td>
+		<td>將 <strong>x</strong> 轉換成浮點數</td>
+		<td>float("56")</td>
+		<td>56.0</td>
+	</tr><tr>
+		<td>hex(x)</td>
+		<td>將 <strong>x</strong> 轉換成十六進位數字</td>
+		<td>hex(34)</td>
+		<td>0x22</td>
+	</tr><tr>
+		<td>oct(x)</td>
+		<td>將 <strong>x</strong> 轉換成八進位數字</td>
+		<td>oct(34)</td>
+		<td>0o42</td>
+	</tr><tr>
+		<td>str(x)</td>
+		<td>將 <strong>x</strong> 轉換成字串</td>
+		<td>str(56)</td>
+		<td>56 ( 字串 )</td>
+	<tr></tbody></table>
+	<!--}}}-->
+</section>
+
+<!-- TYPE -->
+<section data-ks='P_EX,Q_ITS'>
+	<!--{{{-->
+	<div data-x='quiz:c'>
+		<div>請問變數宣告後它們的資料類別依序是？</div>
+		<div data-x='quiz:s'>
+			age = 12
+			<div class='cols'>
+				<div data-o='O'>int</div>
+				<div data-o='X'>float</div>
+				<div data-o='X'>str</div>
+				<div data-o='X'>boolean</div>
+			</div>
+		</div>
+		<div data-x='quiz:s'>
+			minor = False
+			<div class='cols'>
+				<div data-o='X'>int</div>
+				<div data-o='X'>float</div>
+				<div data-o='X'>str</div>
+				<div data-o='O'>boolean</div>
+			</div>
+		</div>
+		<div data-x='quiz:s'>
+			name = 'David'
+			<div class='cols'>
+				<div data-o='X'>int</div>
+				<div data-o='X'>float</div>
+				<div data-o='O'>str</div>
+				<div data-o='X'>boolean</div>
+			</div>
+		</div>
+		<div data-x='quiz:s'>
+			weight = 64.5
+			<div class='cols'>
+				<div data-o='X'>int</div>
+				<div data-o='O'>float</div>
+				<div data-o='X'>str</div>
+				<div data-o='X'>boolean</div>
+			</div>
+		</div>
+		<div data-x='quiz:s'>
+			zip = '545'
+			<div class='cols'>
+				<div data-o='X'>int</div>
+				<div data-o='X'>float</div>
+				<div data-o='O'>str</div>
+				<div data-o='X'>boolean</div>
+			</div>
+		</div>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_EX,Q_ITS'>
+	<!--{{{-->
+	<div data-x='quiz:c'>
+		<div>您必須識別各種類型作業的資料類型。</div>
+		<div data-x='quiz:s'>
+			type(5.0)
+			<div class='cols'>
+				<div data-o='X'>int</div>
+				<div data-o='O'>float</div>
+				<div data-o='X'>str</div>
+				<div data-o='X'>boolean</div>
+			</div>
+		</div>
+		<div data-x='quiz:s'>
+			type('True')
+			<div class='cols'>
+				<div data-o='X'>int</div>
+				<div data-o='X'>float</div>
+				<div data-o='O'>str</div>
+				<div data-o='X'>boolean</div>
+			</div>
+		</div>
+		<div data-x='quiz:s'>
+			type(False)
+			<div class='cols'>
+				<div data-o='X'>int</div>
+				<div data-o='X'>float</div>
+				<div data-o='X'>str</div>
+				<div data-o='O'>boolean</div>
+			</div>
+		</div>
+		<div data-x='quiz:s'>
+			type(+1E10)
+			<div class='cols'>
+				<div data-o='X'>int</div>
+				<div data-o='O'>float</div>
+				<div data-o='X'>str</div>
+				<div data-o='X'>boolean</div>
+			</div>
+		</div>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_EX,Q_ITS'>
+	<!--{{{-->
+	<div data-x='quiz:c'>
+		根據下列程式，請回答註解中的問題。
+		<div class='cb frame'>
+			<div>age = input("Enter your age: ")<div>
+			<div data-x='quiz:s'>
+				<div># age 的資料型態為</div>
+				<div class='cols'>
+					<div data-o='X'>int</div>
+					<div data-o='O'>str</div>
+					<div data-o='X'>boolean</div>
+				</div>
+			</div>
+			<div>year = input("Enter the four-digit year: ")</div>
+			<div>born = eval(year) - eval(age)</div>
+			<div data-x='quiz:s'>
+				<div># born 的資料型態為</div>
+				<div class='cols'>
+					<div data-o='O'>int</div>
+					<div data-o='X'>str</div>
+					<div data-o='X'>boolean</div>
+				</div>
+			</div>
+			<div>message = "You were born in " + str(born)</div>
+			<div data-x='quiz:s'>
+				<div># message 的資料型態為</div>
+				<div class='cols'>
+					<div data-o='X'>int</div>
+					<div data-o='O'>str</div>
+					<div data-o='X'>boolean</div>
+				</div>
+			</div>
+			<div>print(message)</div>
+		</div>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_EX,Q_ITS'>
+	<!--{{{-->
+	<div data-x='quiz:c'>
+		<div>您建立了下列程式來找出會議室並顯示房間名稱。</div>
+		<div class='cb frame' style='padding-left:4px'>
+			<div>rooms = {1: 'Foyer', 2: 'Conference Room'}</div>
+			<div data-x='quiz:s'># 請問哪兩種資料類型儲存在 rooms 清單中？
+				<div data-o="X">布林值和字串</div>
+				<div data-o="X">浮點數和布林值</div>
+				<div data-o="O">整數和字串</div>
+				<div data-o="X">浮點數和整數</div>
+			</div>
+			<div>room = input('Enter the room number: ')</div>
+			<div data-x='quiz:s'># 請問 room 是哪種資料類型？
+				<div data-o="X">bool</div>
+				<div data-o="X">float</div>
+				<div data-o="X">int</div>
+				<div data-o="O">string</div>
+			</div>
+			<div>if not room in rooms:</div>
+			<div class='cb'>
+				<div data-x='quiz:s'># 為什麼上方判斷式無法尋找房間？
+					<div data-o="X">無效的語法</div>
+					<div data-o="O">不符合的資料類型</div>
+					<div data-o="X">命名錯誤的變數</div>
+				</div>
+				<div>print('Room does not exist.')</div>
+			</div>
+			<div>else:</div>
+			<div class='cb'>print("The room name is " + rooms[room])</div>
+		</div>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_EX' data-x='math'><!--{{{ Operator -->
+	<h2>運算子</h2>
+	<table class='rtable'><thead><tr>
+		<th>運算子</th>
+		<th>數值(Int|Float)</th>
+		<th>字串(String)</th>
+		<th>位元(Bytes)</th>
+		<th>串列(List)</th>
+	</tr></thead><tbody><tr>
+		<th>+</th>
+		<td>3+2$\rightarrow$5</td>
+		<td>"3"+"2"$\rightarrow$"32"</td>
+		<td>b"3"+b"2"$\rightarrow$b"32"</td>
+		<td>[3]+[2]$\rightarrow$[3,2]</td>
+	</tr><tr>
+		<th>-</th>
+		<td>3-2$\rightarrow$1</td>
+		<td>未定義</td>
+		<td>未定義</td>
+		<td>未定義</td>
+	</tr><tr>
+		<th>*</th>
+		<td>3*2$\rightarrow$6</td>
+		<td>"3"*2$\rightarrow$"33"</td>
+		<td>b"3"*2$\rightarrow$b"33"</td>
+		<td>[3]*2$\rightarrow$[3,3]</td>
+	</tr><tr>
+		<th>/</th>
+		<td>3/2$\rightarrow$1.5</td>
+		<td>未定義</td>
+		<td>未定義</td>
+		<td>未定義</td>
+	</tr><tr>
+		<th>//</th>
+		<td>3//2$\rightarrow$1</td>
+		<td>未定義</td>
+		<td>未定義</td>
+		<td>未定義</td>
+	</tr><tr>
+		<th>%</th>
+		<td>3%2$\rightarrow$1</td>
+		<td>未定義</td>
+		<td>未定義</td>
+		<td>未定義</td>
+	</tr><tr>
+		<th>**</th>
+		<td>3**2$\rightarrow$9</td>
+		<td>未定義</td>
+		<td>未定義</td>
+		<td>未定義</td>
+	</tr></table>
+</section><!--}}}-->
+
+<section data-ks='P_EX'>
+	<h2>🔢 內建函數: 數學</h2><!--{{{ Built-in Functions: Mathematics -->
+	<table class='ltable'><thead><tr>
+		<th>函式<div>參數</div></th><th>功能<div>範例</div></th>
+	</tr></thead><tbody><tr>
+		<th>round<div>(x)</div></th>
+		<td>以四捨六入法取得 <strong>x</strong> 的近似值
+			<div>46 ← round(45.8)</div></td>
+	</tr><tr>
+		<th>floor<div>(x)</div></th>
+		<td>無條件捨去
+			<div>45 ← floor(45.9)</div></td>
+	</tr><tr>
+		<th>ceil<div>(x)</div></th>
+		<td>無條件進位
+			<div>46 ← ceil(45.1)</div></td>
+	</tr><tr>
+		<th>abs<div>(x)</div></th>
+		<td>取得 <strong>x</strong> 的絕對值
+			<div>5 ← abs(-5)</div></td>
+	</tr><tr>
+		<th>pow<div>(x, y)</div></th>
+		<td>取得 <strong>x</strong> 的 <strong>y</strong> 次方
+			<div>8 ← pow(2, 3)</div></td>
+	</tr><tr>
+		<th>divmod<div>(x, y)</div></th>
+		<td>取得 <strong>x</strong> 除以 <strong>y</strong> 的商及餘數的元組
+			<div>(7, 2) ← divmod(44, 6)</div></td>
+	</tr><tr>
+		<th>max<div>(參數串列)</div></th>
+		<td>取得參數串列中的最大值
+			<div>7 ← max(1,3,5,7)</div></td>
+	</tr><tr>
+		<th>min<div>(參數串列)</div></th>
+		<td>取得參數串列中的最小值
+			<div>1 ← min(1,3,5,7)</div></td>
+	</tr><tbody></table>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_EX,Q_ITS'>
+	<!--{{{-->
+	<div>您正在將現有的應用程式轉換成Python。</div>
+	<div>您需要正確編寫所有算數運算式的程式碼。</div>
+	<div>請依運算元優先順序由高到低依序選取 ?</div>
+	<div data-x='quiz:sort'>
+		<div data-o='4'>加法和減法</div>
+		<div data-o='3'>乘法和除法</div>
+		<div data-o='0'>括弧</div>
+		<div data-o='5'>及</div>
+		<div data-o='1'>指數</div>
+		<div data-o='2'>一元正、負、非</div>
+	</div>
+	<!--}}}-->
+</section>
+
+<!-- CALC -->
+<section data-ks='P_EX,Q_ITS'>
+	<!--{{{-->
+	<div data-x='quiz:s'>
+		<div>計算下列 Python 數學運算式</div>
+		<div class='cb frame'>
+			5 * (1+2) ** 2 - 3 + 4 / 2
+		</div>
+		<div class='cols'>
+			<div data-o='X'>5</div>
+			<div data-o='X'>8</div>
+			<div data-o='O'>44</div>
+			<div data-o='X'>22</div>
+		</div>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_EX,Q_ITS'>
+	<!--{{{-->
+	<div data-x='quiz:s'>
+		<div>您執行下列程式碼。請問結果為何?</div>
+		<div class='cb frame'>
+			<div>value1 = 9</div>
+			<div>value2 = 4</div>
+			<div>answer = (value1 % value2 * 10) // 2.0 ** 3.0 + value2</div>
+		</div>
+		<div data-o='X'>輸出 129</div>
+		<div data-o='X'>發生語法錯誤</div>
+		<div data-o='X'>輸出 5.667</div>
+		<div data-o='O'>輸出 5.0</div>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_EX,Q_ITS'>
+	<!--{{{-->
+	<div data-x='quiz:c'>
+		<div>你設計了一個數學運算的 Python 程式，程式碼如下：</div>
+		<div class='cb frame'>
+			<div>a = 21</div>
+			<div>b = 5</div>
+		</div>
+		<div data-x='quiz:s'>
+			<div>請問 <b>print(a / b)</b> 將輸出什麼 ?</div>
+			<div class='cols'>
+				<div data-o='O'>4.2</div>
+				<div data-o='X'>4</div>
+				<div data-o='X'>1</div>
+			</div>
+		</div>
+		<div data-x='quiz:s'>
+			<div>請問 <b>print(a // b)</b> 將輸出什麼 ?</div>
+			<div class='cols'>
+				<div data-o='X'>4.2</div>
+				<div data-o='O'>4</div>
+				<div data-o='X'>1</div>
+			</div>
+		</div>
+		<div data-x='quiz:s'>
+			<div>請問 <b>print(a % b)</b> 將輸出什麼 ?</div>
+			<div class='cols'>
+				<div data-o='X'>4.2</div>
+				<div data-o='X'>4</div>
+				<div data-o='O'>1</div>
+			</div>
+		</div>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_EX,Q_ITS'>
+	<!--{{{-->
+	<div data-x='quiz:s'>
+		<div>您執行下列程式碼，請問輸出值為何 ?</div>
+		<div class='cb frame'>
+			<div>list_1 = [1,2]</div>
+			<div>list_2 = [3,4]</div>
+			<div>list_3 = list_1 + list_2</div>
+			<div>list_4 = list_3 * 3</div>
+			<div>print(list_4)</div>
+		</div>
+		<div data-o='O'>[1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4]</div>
+		<div data-o='X'>[[1, 2, 3, 4], [1, 2, 3, 4], [1, 2, 3, 4]]</div>
+		<div data-o='X'>[3, 6, 9, 12]</div>
+		<div data-o='X'>[[1, 2], [3, 4], [1, 2], [3, 4], [1, 2], [3, 4]]</div>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_EX,Q_ITS'>
+	<!--{{{-->
+	<div data-x='quiz:m'>
+		<div>某間銀行必須產生一份報表來顯示所有客戶每天的平均。</div>
+		<div>這份報表必須截斷餘額的小數部分。</div>
+		<div>請問哪兩段程式可以使用 ?</div>
+		<div data-o='O'>average_blance = int(total_deposits/number_of_customers)</div>
+		<div data-o='O'>average_blance = total_deposits//number_of_customers</div>
+		<div data-o='X'>average_blance = total_deposits**number_of_customers</div>
+		<div data-o='X'>average_blance = float(total_deposits//number_of_customers)</div>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_EX,Q_ITS'>
+	<!--{{{-->
+	<div>函式必須執行下列工作:<ul>
+		<li>提取浮點數(float)的絕對值</li>
+		<li>移除整數後面的任何小數點。</li>
+	</ul></div>
+	<div data-x='quiz:m'>
+		<div>請問您應該使用哪兩個數學函式?。</div>
+		<div data-o='O'>math.floor(x)</div>
+		<div data-o='O'>math.fabs(x)</div>
+		<div data-o='X'>math.frexp(x)</div>
+		<div data-o='X'>math.fmod(x)</div>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_EX,Q_ITS'>
+	<!--{{{-->
+	<div data-x='quiz:c'>
+		<div>您撰寫了以下這段程式碼:</div>
+		<div>請評估這段程式碼,然後從每個下拉式清單中選取正確的選項以回答問題。</div>
+		<div class='cb frame'>
+			<div>a = 'Config1'</div>
+			<div>print(a)</div>
+			<div>b = a</div>
+			<div>a += 'Config2'</div>
+			<div>print(a)</div>
+			<div data-x='quiz:s'># 請問顯示的內容為何 ?
+				<div data-o="X">Config1</div>
+				<div data-o="O">Config1Config2</div>
+				<div data-o="X">Config2</div>
+				<div data-o="X">Config2Config1</div>
+			</div>
+			<div>print(b)</div>
+			<div data-x='quiz:s'># 請問顯示的內容為何 ?
+				<div data-o="O">Config1</div>
+				<div data-o="X">Config1Config2</div>
+				<div data-o="X">Config2</div>
+				<div data-o="X">Config2Config1</div>
+			</div>
+		</div>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_EX,Q_ITS'>
+	<!--{{{-->
+	<div>您正在撰寫一個Python程式來評估算數公式。</div>
+	<div>此公式描述為b等於a乘以負一之後再平方。其中a是即將輸入的成績,而b是結果。</div>
+	<div>您所建立的程式碼片段如下。加上行號僅為參考之用。</div>
+	<div class='cb frame'>
+		<div>a= eval(input("Enter a number for the question:"))</div>
+		<div data-x='quiz:sort'>b= 
+			<span data-o="1">-</span>
+			<span data-o="0">(</span>
+			<span data-o="3">)</span>
+			<span data-o="-">*</span>
+			<span data-o="4">**2</span>
+			<span data-o="-">2</span>
+			<span data-o="2">a</span>
+		</div>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_EX'>
+	<h2>⚙️ 內建函數: 字串</h2><!--{{{-->
+	<table class='ltable'><thead><tr>
+		<th>函式</th><th>參數</th><th>功能</th><th>範例</th><th>結果</th>
+	</tr></thead><tbody><tr>
+		<th class='ar'>len</th><th class='al'>( 字串 )</th>
+		<td>取得字串長度</td>
+		<td>len("book")</td>
+		<td class='ac'>4</td>
+	</tr><tr>
+		<th class='ar'>format</th><th class='al'>( 數值, 格式 )</th>
+		<td>根據格式將數值轉換為字串</td>
+		<td>format(4,".2f")</td>
+		<td class='ac'>4.00</td>
+	</tr><tr>
+		<th class='ar'>chr</th><th class='al'>( 數值 )</th>
+		<td>取得整數 <strong>x</strong> 的字元</td>
+		<td>chr(65)</td>
+		<td class='ac'>A</td>
+	</tr><tr>
+		<th class='ar'>ord</th><th class='al'>( 字元 )</th>
+		<td>回傳字元 <strong>x</strong> 的 Unicode 編碼值</td>
+		<td>ord(" 我 ")</td>
+		<td class='ac'>25105</td>
+	</tr><tr>
+		<th class='ar'>find</th><th class='al'>(s)</th>
+		<td>搜尋 <strong>s</strong> 字串在字串中的位置</td>
+		<td>"book".find("k")</td>
+		<td class='ac'>3</td>
+	</tr><tr>
+		<th colspan='5'></th>
+	</tr><tr>
+		<th class='ar'>center</th><th class='al'>(n)</th>
+		<td>將字串擴充為 <strong>n</strong> 個字元且置中</td>
+		<td>"book".center(8)</td>
+		<td class='ac'>" book "</td>
+	</tr><tr>
+		<th class='ar'>ljust</th><th class='al'>(n)</th>
+		<td>將字串擴充為 <strong>n</strong> 個字元且靠左</td>
+		<td>"book".ljust(8)</td>
+		<td class='ac'>"book "</td>
+	</tr><tr>
+		<th class='ar'>rjust</th><th class='al'>(n)</th>
+		<td>將字串擴充為 <strong>n</strong> 個字元且靠右</td>
+		<td>"book".rjust(8)</td>
+		<td class='ac'>" book"</td>
+	</tr><tr>
+		<th colspan='5'></th>
+	</tr><tr>
+		<th class='ar'>strip</th><th class='al'>()</th>
+		<td>移除字串左方及右方的空白字元</td>
+		<td>" book ".strip()</td>
+		<td class='ac'>"book"</td>
+	</tr><tr>
+		<th class='ar'>lstrip</th><th class='al'>()</th>
+		<td>移除字串左方的空白字元</td>
+		<td>" book ".lstrip()</td>
+		<td class='ac'>"book "</td>
+	</tr><tr>
+		<th class='ar'>rstrip</th><th class='al'>()</th>
+		<td>移除字串右方的空白字元</td>
+		<td>" book ".rstrip()</td>
+		<td class='ac'>" book"</td>
+	</tr><tr>
+		<th colspan='5'></th>
+	</tr><tr>
+		<th class='ar'>startswith</th><th class='al'>(s)</th>
+		<td>字串是否以 <strong>s</strong> 字串開頭</td>
+		<td>"abc".startswith("a")</td>
+		<td class='ac'>True</td>
+	</tr><tr>
+		<th class='ar'>endswith</th><th class='al'>(s)</th>
+		<td>字串是否以 <strong>s</strong> 字串結尾</td>
+		<td>"abc".endswith("c")</td>
+		<td class='ac'>True</td>
+	</tr><tr>
+		<th class='ar'>islower</th><th class='al'>()</th>
+		<td>字串是否都是小寫字母</td>
+		<td>"Yes".islower()</td>
+		<td class='ac'>False</td>
+	</tr><tr>
+		<th class='ar'>isupper</th><th class='al'>()</th>
+		<td>字串是否都是大寫字母</td>
+		<td>"YES".isupper()</td>
+		<td class='ac'>True</td>
+	</tr><tr>
+		<th colspan='5'></th>
+	</tr><tr>
+		<th class='ar'>lower</th><th class='al'>()</th>
+		<td>將字串元都轉為小寫字母</td>
+		<td>"Yes".lower()</td>
+		<td class='ac'>yes</td>
+	</tr><tr>
+		<th class='ar'>upper</th><th class='al'>()</th>
+		<td>將字串元都轉為大寫字母</td>
+		<td>"Yes".upper()</td>
+		<td class='ac'>YES</td>
+	</tr><tr>
+		<th class='ar'>s.join</th><th class='al'>(list)</th>
+		<td>將串列中元素以 <strong>s</strong> 字串做為連接字元組成一個字串</td>
+		<td>"#".join(["ab", "cd", "ef"])</td>
+		<td class='ac'>ab#cd#ef</td>
+	</tr><tr>
+		<th class='ar'>split</th><th class='al'>(s)</th>
+		<td>將字串以 <strong>s</strong> 字串為分隔字元分割為串列</td>
+		<td>"ab#cd#ef".split("#")</td>
+		<td class='ac'>["ab", "cd", "ef"]</td>
+	</tr><tr>
+		<th class='ar'>replace</th><th class='al'>(s1, s2)</th>
+		<td>將字串中的 <strong>s1</strong> 字串以 <strong>s2</strong> 字串取代</td>
+		<td>"book".replace("o","a")</td>
+		<td class='ac'>baak</td>
+	</tr></tbody></table>
+	<!--}}}-->
+</section>
+
+<!-- FORMAT -->
+<section data-ks='P_EX,Q_ITS'>
+	<!--{{{-->
+	<div data-x='quiz:s'>
+		<div>請問下列程式，print陳述式的輸出為何?</div>
+		<div class='cb frame'>
+			<div>x = 'oranges'</div>
+			<div>y = 'apples'</div>
+			<div>z = 'bananas'</div>
+			<div>data = '{1} and {0} and {2}'</div>
+			<div>print( data.format(z,y,x) )</div>
+		</div>
+		<div data-o='X'>bananas and oranges and apples</div>
+		<div data-o='O'>apples and bananas and oranges</div>
+		<div data-o='X'>apples and oranges and bananas</div>
+		<div data-o='X'>oranges and apples and bananas</div>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_EX,Q_ITS'>
+	<!--{{{-->
+	<div data-x='quiz:sort'>
+		<div>您需要列印資料,以便呈現出類似下面的範例:</div>
+		<pre>Oranges  5.6  1.33
+Apples   2.0  0.54
+Grapes  10.2 10.96</pre>
+		<div>具體而言,列印成品必須符合下列需求:<ul>
+			<li>水果名稱必須在10個空格寬的資料行中靠左對齊列印。</li>
+			<li>重量必須在5個空格寬的資料行中靠右對齊列印,而且小數點後面最多一位數。</li>
+			<li>價格必須在7個空格寬的資料行中靠右對齊列印,而且小數點後面最多兩位數。</li>
+		</ul></div>
+		<div>請完成下列程式</div>
+		<div class='cb frame'>
+			<div>def print_table(file) :</div>
+			<div class='cb'>
+				<div>data = open(file, "r")</div>
+				<div>for record in data :</div>
+				<div class='cb'>
+					<div>fields = record.split(",")</div>
+					<div>
+						<span data-o="0">print("</span>
+						<span data-o="-">{10:0}</span>
+						<span data-o="-">{5:1f}</span>
+						<span data-o="-">{7:2f}</span>
+						<span data-o="3">{2:7.2f}</span>
+						<span data-o="2">{1:5.1f}</span>
+						<span data-o="1">{0:10}</span>
+						<span>".format(fields[0], eval(fields[1]), eval(fields[2])))</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_EX,Q_ITS'>
+	<!--{{{-->
+	<div data-x='quiz:c'>
+		<div>某食品公司需要一套程式，讓他們的客服中心能夠用來輸入新咖啡種類的問卷調查資料。</div>
+		<div>此程式必須執行下列工作 :<ul>
+			<li>接受輸入(rating)。</li>
+			<li>傳回五星評比標準的平均評分(average)。</li>
+			<li>將輸出四捨五入到兩位小數。</li>
+		</ul></div>
+		<div class='cb frame'>
+			<div>sum = count = done = 0</div>
+			<div>average = 0.0</div>
+			<div>while done != -1 :</div>
+			<div class='cb'>
+				<div class='QMix'>
+					<span>rating = </span>
+					<div data-x='quiz:s' class='QR_'>
+						<span class='HT'>點擊展開</span>
+						<div data-o="O">float( input("Enter next rating (1-5, -1 for done)") )</div>
+						<div data-o="X">input "Enter next rating (1-5, -1 for done)"</div>
+						<div data-o="X">input( "Enter next rating (1-5, -1 for done)" )</div>
+						<div data-o="X">print( "Enter next rating (1-5, -1 for done)" ) input "Enter next rating (1-5, -1 for done)"</div>
+					</div>
+				</div>
+				<div>if rating == -1 :</div>
+				<div class='cb'>break</div>
+				<div>sum += rating</div>
+				<div>count += 1</div>
+			</div>
+			<div>average = float( sum / count )</div>
+			<div class='QMix'>
+				<div data-x='quiz:s' class='QR_'>
+					<span class='HT'>點擊展開</span>
+					<div data-o="X">console.input("The average star rating for the new coffee is:"</div>
+					<div data-o="X">output("The average star rating for the new coffee is:"</div>
+					<div data-o="O">print("The average star rating for the new coffee is:"</div>
+					<div data-o="X">printline("The average star rating for the new coffee is:"</div>
+				</div>
+				+
+				<div data-x='quiz:s' class='QR_'>
+					<span class='HT'>點擊展開</span>
+					<div data-o="X">{average, '.2f'}</div>
+					<div data-o="X">format.average.{2d}</div>
+					<div data-o="X">format(average,'.2d')</div>
+					<div data-o="O">format(average,'.2f')</div>
+				</div>
+				)
+			</div>
+		</div>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_EX,Q_ITS'>
+	<!--{{{-->
+	<div data-x='quiz:m'>
+		<div>您正在建立一個電子商務指令碼來接受使用者輸入並以逗點分隔格式輸出資料。</div>
+		<div>您撰寫了下列程式碼以接受輸入：</div>
+		<div class='cb frame'>
+			<div>item = input('Enter the item name: ')</div>
+			<div>sales = int(input('Enter the quantity: '))</div>
+		</div>
+		<div>輸出必須符合下列需求:<ul>
+			<li>以雙引號括住字串。</li>
+			<li>不以引號或其他字元括住數字。</li>
+			<li>以逗點分隔項目。</li>
+		</ul></div>
+		<div>請問哪兩個可以符合要求?</div>
+		<div data-o='X'>print('{0},{1}'.format(item, sales))</div>
+		<div data-o='X'>print(item + ',' + sales)</div>
+		<div data-o='O'>print('"{0}",{1}'.format(item, sales))</div>
+		<div data-o='O'>print('"' + item + '",' + sales)</div>
+	</div>
+	<!--}}}-->
+</section>
+
+<!-- INPUT -->
+<section data-ks='P_EX,Q_ITS'>
+	<!--{{{-->
+	<div data-x='quiz:c'>
+		<div>您正在為公司開發一個Python應用程式。</div>
+		<div>您需要接受使用者的輸入並將該項資訊輸出至使用者的畫面。</div>
+		<div>您從下列程式碼開始著手。</div>
+		<div class='cb frame'>
+			<div>print("What is your name?")</div>
+			<div data-x='quiz:s' class='QR_'>
+				<span class="HT">點擊展開</span>
+				<div data-o="X">input("name")</div>
+				<div data-o="O">name = input()</div>
+				<div data-o="X">input(name)</div>
+				<div data-o="X">name = input</div>
+			</div>
+			<div>print(name)</div>
+		</div>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_EX,Q_ITS'>
+	<!--{{{-->
+	<div data-x='quiz:c'>
+		<div>您正在建立一個比較數字的Python程式</div>
+		<div class='cb frame' style='position:relative'>
+			<div>num1 = eval(input ('Please enter the first number: '))</div>
+			<div>num2 = eval(input ('Please enter the second number: '))</div>
+			<div>if num1 == num2:</div>
+			<div class='cb'>
+				<div>print('The two numbers are equal. ')</div>
+				<div data-x='quiz:s'>
+					<div># 上述 print 陳述式只有在這兩個數字的值相等時才會列印。</div>
+					<table width='100%'><tr>
+						<th width='50%' data-o='O'>正確</th>
+						<th width='50%' data-o='X'>錯誤</th>
+					</tr></table>
+				</div>
+			</div>
+			<div>if num1 &lt;= num2:</div>
+			<div class='cb'>
+				<div>print('Number 1 is less than number 2. ')</div>
+				<div data-x='quiz:s'>
+					<div># 上述 print 陳述式只有在num1小於num2時才會列印。</div>
+					<table width='100%'><tr>
+						<th width='50%' data-o='X'>正確</th>
+						<th width='50%' data-o='O'>錯誤</th>
+					</tr></table>
+				</div>
+			</div>
+			<div>if num1 &gt; num2:</div>
+			<div class='cb'>
+				<div>print('Number 1 is greater than number 2. ')</div>
+				<div data-x='quiz:s'>
+					<div># 上述 print 陳述式只有在num1大於num2時才會列印。</div>
+					<table width='100%'><tr>
+						<th width='50%' data-o='O'>正確</th>
+						<th width='50%' data-o='X'>錯誤</th>
+					</tr></table>
+				</div>
+			</div>
+			<div>if num2 = num1:</div>
+			<div class='cb'>
+				<div data-x='quiz:s'>
+					<div># 上述 if 陳述式是無效的比較。</div>
+					<table width='100%'><tr>
+						<th width='50%' data-o='O'>正確</th>
+						<th width='50%' data-o='X'>錯誤</th>
+					</tr></table>
+				</div>
+				<div>print('The two numbers are the same. ')</div>
+			</div>
+		</div>
+	</div>
+	<!--}}}-->
+</section>
+
+<!--}}}-->
+
+<!--{{{ PART-2: Flow Control -->
+
+<section data-ks='P_FC'>
+	<h2>條件式</h2><!--{{{-->
+	<div class='frame'>
+		<table border='0' cellspacing='8' cellpadding='8' class='syntax' align='center'>
+			<tr><th colspan='4' align='right' valign='middle'>
+				<span style='float:left'>IF</span>
+				<span data-h='dialog:photo:3_IF.svg:IF.'>&lt;流程圖&gt;</span>
+			</th></tr>
+			<tr>
+				<th><span class='K'>如果</span></th>
+				<th><span class='V'>下雨</span></th>
+				<th><span class='K'>就</span></th>
+				<th><span class='V'>待在家裡睡覺</th>
+			</tr>
+			<tr>
+				<th>if</th><th>(RAINING)</th><th>:</th><th>sleep()</th>
+			</tr>
+		</table>
+	</div>
+
+	<div class='frame'>
+		<table border='0' cellspacing='8' cellpadding='8' class='syntax' align='center'>
+			<tr><th colspan='4' align='right'>
+				<span style='float:left'>IF ... ELSE ...</span>
+				<span data-h='dialog:photo:3_IFELSE.svg:IF.ELSE.'>&lt;流程圖&gt;</span>
+			</th></tr>
+			<tr>
+				<th><span class='K'>如果</span></th>
+				<th><span class='V'>下雨</span></th>
+				<th><span class='K'>就</span></th>
+				<th><span class='V'>待在家裡睡覺</span></th>
+			</tr>
+			<tr>
+				<th>if</th><th>(RAINING)</th><th>:</th><th>sleep()</th>
+			</tr>
+			<tr>
+				<th><span class='K'>否則</span></th>
+				<th></th>
+				<th><span class='K'>就</span></th>
+				<th><span class='V'>去逛街</span></th>
+			</tr>
+			<tr>
+				<th>else</th><th></th><th>:</th><th>shop()</th>
+			</tr>
+		</table>
+	</div>
+
+	<div class='frame'>
+		<table border='0' cellspacing='8' cellpadding='8' class='syntax' align='center'>
+			<tr><th colspan='4' align='right'>
+				<span style='float:left'>IF ... ELIF ... ELSE ...</span>
+				<span data-h='dialog:photo:3_IFELIFELSE.svg:IF.ELIF.ELSE.'>流程圖</span>
+			</th></tr>
+			<tr>
+				<th><span class='K'>如果</span></th>
+				<th><span class='V'>下雨</span></th>
+				<th><span class='K'>就</span></th>
+				<th><span class='V'>待在家裡睡覺</span></th>
+			</tr>
+			<tr>
+				<th>if</th><th>(RAINING)</th><th>:</th><th>sleep()</th>
+			</tr>
+			<tr>
+				<th><span class='K'>沒有的話如果</span></th>
+				<th><span class='V'>淹大水</span></th>
+				<th><span class='K'>就</span></th>
+				<th><span class='V'>去划船</span></th>
+			</tr>
+			<tr>
+				<th>elif</th><th>(FLOODED)</th><th>:</th><th>boating()</th>
+			</tr>
+			<tr>
+				<th><span class='K'>否則</span></th>
+				<th></th>
+				<th><span class='K'>就</span></th>
+				<th><span class='V'>去逛街</span></th>
+			</tr>
+			<tr>
+				<th>else</th><th></th><th>:</th><th>shop()</th>
+			</tr>
+		</table>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_FC'>
+	<h2>迴圈</h2><!--{{{-->
+	<div class='frame'>
+		<table border='0' cellspacing='8' cellpadding='8' class='syntax'><tr>
+			<td rowspan='2' valign='middle' data-h='dialog:photo:3_WHILE.svg:WHILE.'>
+				<img src='3_WHILE.svg' style='width:128px;height:128px;'/>
+			</td>
+			<th><span class='K'>當持續</span></th>
+			<th><span class='V'>下雨</span></th>
+			<th><span class='K'>就</span></th>
+			<th><span class='V'>待在家裡睡覺</span></th>
+		</tr><tr>
+			<th>while</th><th>(RAINING)</th><th>:</th><th>sleep()</th>
+		</tr></table>
+	</div>
+	<div class='frame'>
+		<table border='0' cellspacing='8' cellpadding='8' class='syntax'><tr>
+			<td rowspan='2' valign='middle' data-h='dialog:photo:3_FOR.svg:FOR'>
+				<img src='3_FOR.svg' style='width:128px;height:128px;'/>
+			</td>
+			<th><span class='K'>對</span></th>
+			<th><span class='V'>班上</span>的每個<span class='V'>同學</span></th>
+			<th><span class='K'>進行</th>
+			<th><span class='V'>調分</th>
+		</tr><tr>
+			<th>for</th><th>(STUDENT in CLASS)</th><th>:</th><th>add_score()</th>
+		</tr></table>
+	</div>
+	<ul>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_FC'>
+	<h2>基於條件式的迴圈控制</h2><!--{{{-->
+	<div class='frame'>
+		<table border='1' cellspacing='8' cellpadding='8' class='syntax' width='100%'><tr>
+		<td valign='top' uid='View' style='height:50vh;'><img src='3_BREAK.svg'/></td>
+		<td valign='top' uid='View' style='height:50vh;'><img src='3_CONTINUE.svg'/></td>
+		</tr></table>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_FC,Q_ITS'>
+	<!--{{{-->
+	<div data-x='quiz:s'>
+		<div>您撰寫了下列程式碼來根據學生目前的成績 (grade) 和排名 (rank) 判斷學生的最終成績。</div>
+		<div>請問下列程式將會列印何值?</div>
+		<div class='cb frame'>
+			<div>grade = 76</di>
+			<div>rank = 3</div>
+			<div>if grade &gt; 80 and rank &gt;= 3 :</div>
+			<div class='cb'>grade += 10</div>
+			<div>elif grade &gt; 70 and rank &gt; 3 :</div>
+			<div class='cb'>grade += 5</div>
+			<div>else :</div>
+			<div class='cb'>grade -= 5</div>
+			<div>print(grade)</div>
+		</div>
+		<div class='cols'>
+			<div data-o='O'>71</div>
+			<div data-o='X'>76</div>
+			<div data-o='X'>81</div>
+			<div data-o='X'>86</div>
+		</div>
+	</diV>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_FC,Q_ITS'>
+	<!--{{{-->
+	<div data-x='quiz:c'>
+		<div>您正在使用Python編寫數學公用程式的程式碼。</div>
+		<div>您正在撰寫一個函式來方根。此函式必須符合下列需求:<ul>
+			<li>如果 a 為非負數, 則傳回 a ** (1 / b)</li>
+			<li>如果 a 為負偶數, 則傳回 'Result is an imaginary number'</li>
+			<li>如果 a 為負奇數, 則傳回 -(-a) ** (1 / b) 請從每個下拉式清單中選取正確的程式碼片段以完成程式碼。</li>
+		</ul></div>
+		<div class='frame'><div class='cb'>
+			<div>def safe_root (a, b):</div>
+			<div class='cb'>
+				<div data-x='quiz:s' class='QR_'>
+					<span class='HT'>點擊展開</span>
+					<div data-o="O">if a &gt;= 0 :</div>
+					<div data-o="X">if a%2 == 0 :</div>
+					<div data-o="X">else :</div>
+					<div data-o="X">elif :</div>
+				</div>
+				<div class='cb'>answer = a ** (1 / b)</div>
+				<div data-x='quiz:s' class='QR_'>
+					<span class='HT'>點擊展開</span>
+					<div data-o="X">if a &gt;= 0 :</div>
+					<div data-o="X">if a%2 == 0 :</div>
+					<div data-o="O">else :</div>
+					<div data-o="X">elif :</div>
+				</div>
+				<div class='cb'>
+					<div data-x='quiz:s' class='QR_'>
+						<span class='HT'>點擊展開</span>
+						<div data-o="X">if a &gt;= 0 :</div>
+						<div data-o="O">if a%2 == 0 :</div>
+						<div data-o="X">else :</div>
+						<div data-o="X">elif :</div>
+					</div>
+					<div class='cb'>answer = "Result is an imaginary number"</div>
+					<div data-x='quiz:s' class='QR_'>
+						<span class='HT'>點擊展開</span>
+						<div data-o="X">if a &gt;= 0 :</div>
+						<div data-o="X">if a%2 == 0 :</div>
+						<div data-o="O">else :</div>
+						<div data-o="X">elif :</div>
+					</div>
+					<div class='cb'>answer = -(-a) ** (1 / b)</div>
+				</div>
+				<div>return answer</div>
+			</div>
+		</div></div>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_FC,Q_ITS'>
+	<!--{{{-->
+	<div data-x='quiz:c'>
+		<div>您正在撰寫一個Python程式來判斷使用者輸入的數字(num)是一位數、兩位數,還是超過兩位數(digits)。</div>
+		<div>請從每個下拉式清單中選取正確的程式碼片段以完成程式碼。</div>
+		<div class='cb frame'>
+			<div>num = int(input("Enter a number with 1 or 2 digits: "))</div>
+			<div>digits = "0"</div>
+			<div data-x='quiz:s' class='QR_'>
+				<span class='HT'>點擊展開</span>
+				<div data-o='O'>if num &gt; -10 and num &lt; 10 :</div>
+				<div data-o='X'>if num &gt; -100 and num &lt; 100 :</div>
+			</div>
+			<div class='cb'>digits= "1"</div>
+			<div data-x='quiz:s' class='QR_'>
+				<span class='HT'>點擊展開</span>
+				<div data-o='X'>if num &gt; -100 and num &lt; 100 :</div>
+				<div data-o='O'>elif num &gt; -100 and num &lt; 100 :</div>
+				<div data-o='X'>if num &gt; -10 and num &lt; 10 :</div>
+				<div data-o='X'>elif num &gt; -10 and num &lt; 10 :</div>
+			</div>
+			<div class='cb'>digits= "2"</div>
+			<div data-x='quiz:s' class='QR_'>
+				<span class='HT'>點擊展開</span>
+				<div data-o="O">else:</div>
+				<div data-o="X">elif:</div>
+			</div>
+			<div class='cb'>digits = "&gt;2"</div>
+			<div>print(digits + " digits.")</div>
+		</div>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_FC,Q_ITS'>
+	<!--{{{-->
+	<div data-x='quiz:c'>
+		<div>您正在建立一個函式來根據下列規則計算入場費(admission_fee)<ul>
+			<li>未滿5歲的任何人=免費入場</li>
+			<li>年滿5歲以上的任何在校學生=10美元</li>
+			<li>5至17歲的任何非在校人士=20美元</li>
+			<li>超過17歲的任何非在校人士=50美元</li>
+		</ul></div>
+		<div>rate 代表美元價格。</div>
+		<div>請從每個下拉式清單中選取正確的程式碼片段以完成程式碼。</div>
+		<div class='cb frame'>
+			<div>def admission_fee (age, school):</div>
+			<div class='cb'>
+				<div>rate = 0</div>
+				<div data-x='quiz:s' class='QR_'>
+					<span class='HT'>點擊展開</span>
+					<div data-o="O">if age &gt;=5 and school == True :</div>
+					<div data-o="X">if age &gt;=5 and age&lt;=17 :</div>
+					<div data-o="X">if age &gt;=5 and school == False :</div>
+				</div>
+				<div class='cb'>rate = 10</div>
+				<div data-x='quiz:s' class='QR_'>
+					<span class='HT'>點擊展開</span>
+					<div data-o="O">elif age &gt;=5 and school == False :</div>
+					<div data-o="X">else age &gt;=5 and school == False :</div>
+					<div data-o="X">elif age &gt;=5 and school == True :</div>
+				</div>
+				<div class='cb'>
+					<div data-x='quiz:s' class='QR_'>
+						<span class='HT'>點擊展開</span>
+						<div data-o="X">if age &gt;=5 and school == True :</div>
+						<div data-o="X">if age &gt;=5 and school == Fasle :</div>
+						<div data-o="O">if age &lt;=17 :</div>
+					</div>
+					<div class='cb'>rate = 20</div>
+					<div>else:</div>
+					<div class='cb'>rate = 50</div>
+				</div>
+				<div>return rate</div>
+			</div>
+		</div>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_FC,Q_ITS'>
+	<!--{{{-->
+	<div data-x='quiz:c'>
+		<div>你開發一個程式碼用來判斷整數是奇數還是偶數：</div>
+		<div class='cb frame'>
+			<div>from random import randint</div>
+			<div>num = randint(1, 100)</div>
+			<div data-x='quiz:s' class='QR_'>
+				<span class='HT'>點擊展開</span>
+				<div data-o="X">if num / 2 == 0 :</div>
+				<div data-o="O">if num % 2 == 0 :</div>
+				<div data-o="X">if num / 2 = 0 :</div>
+				<div data-o="X">if num % 2 = 0 :</div>
+			</div>
+			<div class='cb'>print("%d 是偶數" % num)</div>
+			<div data-x='quiz:s' class='QR_'>
+				<span class='HT'>點擊展開</span>
+				<div data-o="X">if num / 2 != 0 :</div>
+				<div data-o="O">else :</div>
+				<div data-o="X">if num / 2 &lt;&gt; 0 :</div>
+				<div data-o="X">elif num / 2 == 0 :</div>
+			</div>
+			<div class='cb'>print("%d 是奇數" % num)</div>
+		</div>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_FC,Q_ITS'>
+	<!--{{{-->
+	<div data-x='quiz:c'>
+		<div>您正在為某間零售商店撰寫 Python 程式，將庫存追蹤自動化。</div>
+		<div>您的第一項工作是讀取庫存交易的檔案。該檔案包含前一天的銷售量，包括商品識別碼、價格和數量。</div>
+		<div>該檔案的資料範例如下所示:</div>
+		<pre>
+10, 200, 5
+20, 100, 1
+</pre>
+		<div>程式碼必須執行下列工作:<ol>
+			<li>讀取並列印檔案的每一行。</li>
+			<li>忽略空白行。</li>
+			<li>讀取所有行之後關閉檔案。</li>
+		</ol></div>
+		<div>您撰寫了以下這段程式碼。</div>
+		<div class='frame'><div class='cb'>
+			<div>inventory = open("inventory.txt", 'r')</div>
+			<div>eof = False</div>
+			<div>while eof == False:</div>
+			<div class='cb'>
+				<div>line = inventory.readline()</div>
+				<div data-x='quiz:s' class='QR_'>
+					<span class='HT'>點擊展開</span>
+					<div data-o="X">if line != '\n' :</div>
+					<div data-o="O">if line != '' :</div>
+					<div data-o="X">if line != None :</div>
+				</div>
+				<div class='cb'>
+					<div data-x='quiz:s' class='QR_'>
+						<span class='HT'>點擊展開</span>
+						<div data-o="X">if line != "" :</div>
+						<div data-o="X">if line != None :</div>
+						<div data-o="O">if line != "\n" :</div>
+					</div>
+					<div class='cb'>print(line)</div>
+				</div>
+				<div>else :</div>
+				<div class='cb'>
+					<div>print ("End of file")</div>
+					<div>eof = True</div>
+					<div>inventory.close()</div>
+				</div>
+			</div>
+		</div></div>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_FC,Q_ITS'>
+	<!--{{{-->
+	<div data-x='quiz:c'>
+		<div>您正在設計一個決策結構, 以將學生的數字成績(grade)轉換成字母成績(letter_grade)。</div>
+		<div>此程式必須依照下表的指定內容指派字母成績:</div>
+		<table align='center' border='1' cellpadding='5'><tbody>
+			<tr><th>百分比範圍</th><th>字母成績</th></tr>
+			<tr><th>90到100</th><td>A</td></tr>
+			<tr><th>80到89</th><td>B</td></tr>
+			<tr><th>70到79</th><td>C</td></tr>
+			<tr><th>65到69</th><td>D</td></tr>
+			<tr><th>0到64</th><td>F</td></tr>
+		</tbody></table>
+		<div>舉例來說,如果使用者輸入90,輸出就應該是'Your letter grade is A'。</div>
+		<div>同樣地,如果使用者輸入89,輸出就應該是'Your letter grade is B'。</div>
+
+		<div class='frame'><div class='cb'>
+			<div>grade = int(input("Enter a numeric grade"))</div>
+			<div data-x='quiz:s' class='QR_'>
+				<span class='HT'>點擊展開</span>
+				<div data-o="X">if grade &lt;= 90:</div>
+				<div data-o="O">if grade &gt;= 90:</div>
+				<div data-o="X">elif grade &gt; 90:</div>
+				<div data-o="X">elif grade &gt;= 90:</div>
+			</div>
+			<div class='cb'>letter_grade='A'</div>
+			<div data-x='quiz:s' class='QR_'>
+				<span class='HT'>點擊展開</span>
+				<div data-o="X">if grade &gt; 80:</div>
+				<div data-o="X">if grade &gt;= 80:</div>
+				<div data-o="X">elif grade &gt; 80:</div>
+				<div data-o="O">elif grade &gt;= 80:</div>
+			</div>
+			<div class='cb'>letter_grade='B'</div>
+			<div data-x='quiz:s' class='QR_'>
+				<span class='HT'>點擊展開</span>
+				<div data-o="X">if grade &gt; 70:</div>
+				<div data-o="X">if grade &gt;= 70:</div>
+				<div data-o="X">elif grade &gt; 70:</div>
+				<div data-o="O">elif grade &gt;= 70:</div>
+			</div>
+			<div class='cb'>letter_grade='C'</div>
+			<div data-x='quiz:s' class='QR_'>
+				<span class='HT'>點擊展開</span>
+				<div data-o="X">if grade &gt; 65:</div>
+				<div data-o="X">if grade &gt;= 65:</div>
+				<div data-o="X">elif grade &gt; 65:</div>
+				<div data-o="O">elif grade &gt;= 65:</div>
+			</div>
+			<div class='cb'>letter_grade='D'</div>
+			<div>else:</div>
+			<div class='cb'>letter_grade='F'</div>
+			<div>print("Your letter grade is ", letter_grade)</div>
+		</div></div>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_FC,Q_ITS'>
+	<!--{{{-->
+	<div data-x='quiz:c'>
+		<div>某間影音商店需要設法判斷向客戶收取的DVD租借金額。</div>
+		<div>此金額取決於客戶當天歸還DVD的時間。</div>
+		<div>此外，星期四和星期日還有特價優惠。</div>
+		<div>費用結構如下所示:<ul>
+			<li>預設費用 (cost per_day) 是每晚1.59美元。</li>
+			<li>如果客戶在晚上8點過後歸還DVD，商店會向他們額外收取一晚的費用。這筆費用儲存在ontime變數中。</li>
+			<li>星期日 (Sunday) 租借的DVD可享整個租借期間七折優惠。租借日期儲存在weekday變數中。</li>
+			<li>星期四 (Thursday) 租借的DVD可享整個租借期間五折優惠。租借天數儲存在 days_rented 變數中。</li>
+		</ul></div>
+		<div class='frame'><div class='cb'>
+			<div># DVD Rental Calculator</div>
+			<div>ontime = input("Was the video returned before 8 PM? Y or N").lower()</div>
+			<div>days_rented = int(input("How many days was the video rented?"))</div>
+			<div>weekday = input("What day was the video rented?").capitalize()</div>
+			<div>cost_per_day = 1.59</div>
+			<div class='QMix'>
+				if ontime 
+				<div data-x='quiz:s' class='QR_'>
+					<span class='HT'>點擊展開</span>
+					<div data-o="X">!= "n" :</div>
+					<div data-o="O">== "n" :</div>
+					<div data-o="X">== "y" :</div>
+				</div>
+			</div>
+			<div class='cb'>days_rented +=1</div>
+			<div class='QMix'>
+				if weekday 
+				<div data-x='quiz:s' class='QR_'>
+					<span class='HT'>點擊展開</span>
+					<div data-o="O">== "Sunday" :</div>
+					<div data-o="X">&gt;= "Sunday" :</div>
+					<div data-o="X">is "Sunday" :</div>
+				</div>
+			</div>
+			<div class='cb'>total = (days_rented * cost_per_day) * 0.7</div>
+			<div class='QMix'>
+				elif weekday 
+				<div data-x='quiz:s' class='QR_'>
+					<span class='HT'>點擊展開</span>
+					<div data-o="O">== "Thursday" :</div>
+					<div data-o="X">&lt;="Thursday" :</div>
+					<div data-o="X">is "Thursday" :</div>
+				</div>
+			</div>
+			<div class='cb'>total = (days_rented * cost_per_day) * 0.5</div>
+			<div>else:</div>
+			<div class='cb'>total = days_rented * cost_per_day</div>
+			<div>print("Cost of the DVD rental is: $", total)</div>
+		</div></div>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_FC,Q_ITS'>
+	<!--{{{-->
+	<div data-x='quiz:c'>
+		<div>您正在撰寫程式碼來根據下列準則傳回字母成績：<ul>
+			<li>變數grade會將數字成績儲存成 0 到 100 之間的整數。</li>
+			<li>90 到 100 的成績 = A。</li>
+			<li>80 到 89 的成績 = B。</li>
+			<li>70 到 79 的成績 = C。</li>
+			<li>其他所有成績都不及格。</li>
+		</ul></div>
+		<div class='frame'><div class='cb'>
+			<div class='QMix'>
+				<div data-x='quiz:s' class='QR_'>
+					<span class='HT'>點擊展開</span>
+					<div data-o="X">elif</div>
+					<div data-o="O">if</div>
+					<div data-o="X">for</div>
+					<div data-o="X">else</div>
+				</div>
+				grade &lt;= 100 :
+			</div>
+			<div class='cb'>
+				<div class='QMix'>
+					<div data-x='quiz:s' class='QR_'>
+						<span class='HT'>點擊展開</span>
+						<div data-o="X">elif</div>
+						<div data-o="O">if</div>
+						<div data-o="X">for</div>
+						<div data-o="X">else</div>
+					</div>
+					grade &gt;= 90 :
+				</div>
+				<div class='cb'>print "Your grade is A."</div>
+				<div class='QMix'>
+					<div data-x='quiz:s' class='QR_'>
+						<span class='HT'>點擊展開</span>
+						<div data-o="O">elif</div>
+						<div data-o="X">if</div>
+						<div data-o="X">for</div>
+						<div data-o="X">else</div>
+					</div>
+					grade &gt;= 80 :
+				</div>
+				<div class='cb'>print "Your grade is B."</div>
+				<div class='QMix'>
+					<div data-x='quiz:s' class='QR_'>
+						<span class='HT'>點擊展開</span>
+						<div data-o="O">elif</div>
+						<div data-o="X">if</div>
+						<div data-o="X">for</div>
+						<div data-o="X">else</div>
+					</div>
+					grade &lt; 80
+					<div data-x='quiz:s' class='QR_'>
+						<span class='HT'>點擊展開</span>
+						<div data-o="X">or</div>
+						<div data-o="O">and</div>
+						<div data-o="X">not</div>
+					</div>
+					grade &gt; 69 :
+				</div>
+				<div class='cb'>print "Your grade is C."</div>
+				<div data-x='quiz:s' class='QR_'>
+					<span class='HT'>點擊展開</span>
+					<div data-o="X">elif :</div>
+					<div data-o="X">if :</div>
+					<div data-o="X">for :</div>
+					<div data-o="O">else :</div>
+				</div> 
+				<div class='cb'>print "Your grade is failing."</div>
+			</div>
+			<div data-x='quiz:s' class='QR_'>
+				<span class='HT'>點擊展開</span>
+				<div data-o="X">elif :</div>
+				<div data-o="X">if :</div>
+				<div data-o="X">for :</div>
+				<div data-o="O">else :</div>
+			</div> 
+			<div class='cb'>print "Invalid grade entered."</div>
+		</div></div>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_FC,Q_ITS'>
+	<!--{{{-->
+	<div data-x='quiz:c'>
+		<div>您正在撰寫一個函式來執行數字的安全除法。</div>
+		<div>您需要確保分母和分子會傳遞給函式,而且分母不為零。</div>
+		<div class='frame'><div class='cb'>
+			<div>def safe_divide (numerator, denominator) :</div>
+			<div class='cb'>
+				<div data-x='quiz:s' class='QR_'>
+					<span class='HT'>點擊展開</span>
+					<div data-o="O">if numerator is None or denominator is None:</div>
+					<div data-o="X">if numerator is None and denominator is None:</div>
+					<div data-o="X">if numerator = None or denominator = None:</div>
+					<div data-o="X">if numerator = None and denominator = None:</div>
+				</div>
+				<div class='cb'>print("A required value is missing.")</div>
+				<div data-x='quiz:s' class='QR_'>
+					<span class='HT'>點擊展開</span>
+					<div data-o="O">elif denominator == 0:</div>
+					<div data-o="X">elif denominator = 0:</div>
+					<div data-o="X">elif denominator != 0:</div>
+					<div data-o="X">elif denominator in 0:</div>
+				</div>
+				<div class='cb'>print("The denominator is zero.")</div>
+				<div>else :</div>
+				<div class='cb'>return numerator / denominator</div>
+			</div>
+		</div></div>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_FC,Q_ITS'>
+	<!--{{{-->
+	<div data-x='quiz:c'>
+		<div>您為公司開發了一個Python應用程式。</div>
+		<div>您需要完成程式碼,好讓print陳述式正確。</div>
+		<div>請從每個下拉式清單中選取正確的程式碼片段以完成程式碼。</div>
+		<div class='frame'><div class='cb'>
+			<div>numList = [1, 2, 3, 4, 5]</div>
+			<div>alphaList = ["a", "b", "c", "d", "e"]</div>
+			<div data-x='quiz:s' class='QR_'>
+				<span class='HT'>點擊展開</span>
+				<div data-o="X">if numList = alphaList :</div>
+				<div data-o="O">if numList == alphaList :</div>
+				<div data-o="X">if numList += alphaList :</div>
+			</div>
+			<div class='cb'>print("The value in numList are equal to alphaList")</div>
+			<div data-x='quiz:s' class='QR_'>
+				<span class='HT'>點擊展開</span>
+				<div data-o="O">else :</div>
+				<div data-o="X">elif :</div>
+				<div data-o="X">elseif :</div>
+			</div>
+			<div class='cb'>print("The value in numList are not equal to alphaList")</div>
+		</div></div>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_FC,Q_ITS'>
+	<!--{{{-->
+	<div data-x='quiz:c'>
+		<div>您正在建立一個Python指令碼以評估文字輸入並檢查是否有大寫和小寫。</div>
+		<div>請問您應該依序使用哪四個程式碼片段來開發解決方案?</div>
+		<div>請將四個程式碼片段按照正確順序排列。</div>
+		<div data-x='quiz:sort'>
+			<div data-o='0'>
+				<div>name = input('Enter your name: ')</div>
+			</div>
+			<div data-o='2'>
+				<div>elif name.upper() == name:</div>
+				<div class='cb'>print(name, 'is all upper case.')</div>
+			</div>
+			<div data-o='3'>
+				<div>else:</div>
+				<div class='cb'>print(name, 'is mixed case.')</div>
+			</div>
+			<div data-o='-'>
+				<div>else:</div>
+				<div class='cb'>print(name, 'is upper case.')</div>
+			</div>
+			<div data-o='1'>
+				<div>if name.lower() == name:</div>
+				<div class='cb'>print(name, 'is all lower case.')</div>
+			</div>
+			<div data-o='-'>
+				<div>else:</div>
+				<div class='cb'>print(name, 'is lower case.')</div>
+			</div>
+		</div>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_FC,Q_ITS'>
+	<!--{{{-->
+	<div data-x='quiz:s'>
+		請問下列程式碼會列印幾行輸出?
+		<div class='frame'><div class='cb'>
+			<div>products = 2</div>
+			<div>n = 5</div>
+			<div>while (n != 0) :</div>
+			<div class='cb'>
+				<div>product *= n</div>
+				<div>print(product, n)</div>
+				<div>n -= 1</div>
+				<div>if n == 3 : break</div>
+			</div>
+		</div></div>
+		<div class='cols'>
+			<div data-o='X'>1</div>
+			<div data-o='O'>2</div>
+			<div data-o='X'>3</div>
+			<div data-o='X'>5</div>
+		</div>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_FC,Q_ITS'>
+	<!--{{{-->
+	<div data-x='quiz:c'>
+		<div>您正在建立一套適用於小學孩童的互動式乘法表助手程式。</div>
+		<div>您需要完成一個名為times_tables的函式,以計算並顯示所有2到12的乘法表組合。</div>
+		<div class='frame'><div class='cb'>
+			<div># Displays times tables 2 - 12</div>
+			<div>def times_tables():</div>
+			<div class='cb'>
+				<div class='QMix'>
+					for col in 
+					<div data-x='quiz:s' class='QR_'>
+						<span class='HT'>點擊展開</span>
+						<div data-o="X">range(13)</div>
+						<div data-o="O">range(2,13)</div>
+						<div data-o="X">range(2,12,1)</div>
+						<div data-o="X">range(12)</div>
+					</div>
+					:
+				</div>
+				<div class='cb'>
+					<div class='QMix'>
+						for row in 
+						<div data-x='quiz:s' class='QR_'>
+							<span class='HT'>點擊展開</span>
+							<div data-o="X">range(13)</div>
+							<div data-o="O">range(2,13)</div>
+							<div data-o="X">range(2,12,1)</div>
+							<div data-o="X">range(12)</div>
+						</div>
+						:
+					</div>
+					<div class='cb'>print(row * col, end = " ")</div>
+				</div>
+				<div>print()</div>
+			</div>
+			<div># main</div>
+			<div>times_tables()</div>
+		</div>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_FC,Q_ITS'>
+	<!--{{{-->
+	<div data-x='quiz:c'>
+		<div>您正在撰寫一個 Python 程式來驗證員工識別碼</div>
+		<ul>
+			<li>識別碼的格式必須是 ddd-dd-dddd, 而且只能包含數字和虛線</li>
+			<li>如果格式正確,此程式必須列印 True</li>
+			<li>如果格式不正確,則列印 False</li>
+		</ul>
+
+		<div class='frame'><div class='cb'>
+			<div data-x='quiz:s' class='QR_'>
+				<span class='HT'>點擊展開</span>
+				<div data-o="O">employee_number =""</div>
+				<div data-o="X">employee_number ="123"</div>
+			</div>
+			<div>parts=""</div>
+			<div data-x='quiz:s' class='QR_'>
+				<span class='HT'>點擊展開</span>
+				<div data-o="X">while employee_number !=""</div>
+				<div data-o="O">while employee_number !="123"</div>
+			</div>
+			<div class='cb'>
+				<div data-x='quiz:s' class='QR_'>
+					<span class='HT'>點擊展開</span>
+					<div data-o="O">vaild = False</div>
+					<div data-o="X">vaild = True</div>
+				</div>
+				<div>employee_number = input("Enter employee number (ddd-dd-dddd) ('123' to quit): ")</div>
+				<div>parts = employee_number.split('-')</div>
+				<div>if len(parts) == 3:</div>
+				<div class='cb'>
+					<div>if len(parts[0]) == 3 and len(parts[1]) == 2 and len(parts[2]) == 4 :</div>
+					<div class='cb'>
+						<div>if parts[0].isdigit() and parts[1].isdigit() and parts[2].isdigit() :</div>
+						<div class='cb'>
+							<div data-x='quiz:s' class='QR_'>
+								<span class='HT'>點擊展開</span>
+								<div data-o="X">vaild = False </div>
+								<div data-o="O">vaild = True</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div>print(valid)</div>
+			</div>
+		</div></div>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_FC,Q_ITS'>
+	<!--{{{-->
+	<div data-x='quiz:c'>
+		<div>您正在撰寫程式碼以使用星號建立E字形。</div>
+		<div>您需要列印五行程式碼,其中第一行、第三行和第五行各有四個星號,而第二行和第四行各有一個星號。如下所示。</div>
+		<div>****</div><div>*</div><div>****</div><div>*</div><div>****</div>
+		<div class='frame'><div class='cb'>
+			<div>result_str=""</div>
+			<div class='QMix'>
+				for row in range(1,
+				<div data-x='quiz:s' class='QR_'>
+					<span class='HT'>點擊展開</span>
+					<div data-o="X">3</div>
+					<div data-o="X">4</div>
+					<div data-o="X">5</div>
+					<div data-o="O">6</div>
+				</div>
+				) :
+			</div>
+			<div class='cb'>
+				<div class='QMix'>
+					for column in range(1,
+					<div data-x='quiz:s' class='QR_'>
+						<span class='HT'>點擊展開</span>
+						<div data-o="X">3</div>
+						<div data-o="X">4</div>
+						<div data-o="O">5</div>
+						<div data-o="X">6</div>
+					</div>
+					) :
+				</div>
+				<div class='cb'>
+					<div>if (row==1 or row==3 or row==5) :</div>
+					<div class='cb'>result_str=result_str+"*"</div>
+					<div>elif column==1 :</div>
+					<div class='cb'>result_str=result_str+"*"</div>
+				</div>
+				<div>result_str=result_str+"\n"</div>
+			</div>
+			<div>print(result_str)</div>
+		</div>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_FC,Q_ITS'>
+	<!--{{{-->
+	<div data-x='quiz:c'>
+		<div>您正在為某間線上產品配銷公司開發一個Python程式。</div>
+		<div>此程式必須逐一查看產品清單(productIdList),然後在找到特定產品識別碼時逸出。</div>
+		<div class='frame'><div class='cb'>
+			<div>productIdList = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]</div>
+			<div>index = 0</div>
+			<div class='QMix'>
+				<div data-x='quiz:s' class='QR_'>
+					<span class='HT'>點擊展開</span>
+					<div data-o="O">while</div>
+					<div data-o="X">for</div>
+					<div data-o="X">if</div>
+					<div data-o="X">break</div>
+				</div>
+				(index &lt; 10) :
+			</div>
+			<div class='cb'>
+				<div>print(productIdList[index])</div>
+				<div>if productIdList[index] == 6 :</div>
+				<div class='cb'>
+					<div data-x='quiz:s' class='QR_'>
+						<span class='HT'>點擊展開</span>
+						<div data-o="X">while</div>
+						<div data-o="X">for</div>
+						<div data-o="X">if</div>
+						<div data-o="O">break</div>
+					</div>
+				</div>
+				<div>else :</div>
+				<div class='cb'>
+					<div data-x='quiz:s' class='QR_'>
+						<span class='HT'>點擊展開</span>
+						<div data-o="X">continue</div>
+						<div data-o="X">break</div>
+						<div data-o="O">index += 1</div>
+						<div data-o="X">index = 1</div>
+					</div>
+				</div>
+			</div>
+		</div></div>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_FC,Q_ITS'>
+	<!--{{{-->
+	<div data-x='quiz:c'>
+		<div>您正在建立一個Python程式,讓使用者猜測1到10之間的數字。使用者最多可以猜三次。</div>
+		<div class='frame'><div class='cb'>
+			<div>from random import randint</div>
+			<div>target = randint(1, 10)</div>
+			<div>chance = 1</div>
+			<div>print("Guess an integer from 1 to 10. You will have 3 chances. ")</div>
+			<div data-x='quiz:s' class='QR_'>
+				<span class='HT'>點擊展開</span>
+				<div data-o="X">break</div>
+				<div data-o="X">chance += 1</div>
+				<div data-o="X">chance = 2</div>
+				<div data-o="X">pass</div>
+				<div data-o="X">while chance &lt; 3</div>
+				<div data-o="X">while chance &lt; 3 :</div>
+				<div data-o="O">while chance &lt;= 3 :</div>
+			</div>
+			<div class='cb'>
+				<div>guess = int(input("Guess an integer: "))</div>
+				<div>if guess &gt; target :</div>
+				<div class='cb'>print("Guess is too high")</div>
+				<div>elif guess &lt; target :</div>
+				<div class='cb'>print("Guess is too low")</div>
+				<div>else :</div>
+				<div class='cb'>
+					<div>print("Guess is just right!")</div>
+					<div data-x='quiz:s' class='QR_'>
+						<span class='HT'>點擊展開</span>
+						<div data-o="O">break</div>
+						<div data-o="X">chance += 1</div>
+						<div data-o="X">chance = 2</div>
+						<div data-o="X">pass</div>
+						<div data-o="X">while chance &lt; 3</div>
+						<div data-o="X">while chance &lt; 3 :</div>
+						<div data-o="X">while chance &lt;= 3 :</div>
+					</div>
+				</div>
+				<div data-x='quiz:s' class='QR_'>
+					<span class='HT'>點擊展開</span>
+					<div data-o="X">break</div>
+					<div data-o="O">chance += 1</div>
+					<div data-o="X">chance = 2</div>
+					<div data-o="X">pass</div>
+					<div data-o="X">while chance &lt; 3</div>
+					<div data-o="X">while chance &lt; 3 :</div>
+					<div data-o="X">while chance &lt;= 3 :</div>
+				</div>
+			</div>
+		</div></div>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_FC,Q_ITS'>
+	<!--{{{-->
+	<div data-x='quiz:c'>
+		<div>您正在撰寫符合下列需求的程式碼:<ul>
+			<li>允許使用者不斷輸入字詞。</li>
+			<li>輸出每個字詞的字元數。</li>
+		</ul></div>
+		<div class='frame'><div class='cb'>
+			<div>x = "Hello World"</div>
+			<div class='QMix'>
+				<div data-x='quiz:s' class='QR_'>
+					<span class='HT'>點擊展開</span>
+					<div data-o="X">for</div>
+					<div data-o="X">if</div>
+					<div data-o="O">while</div>
+				</div>
+				x != "QUIT" :
+			</div>
+			<div class='cb'>
+				<div>num = 0</div>
+				<div class='QMix'>
+					<div data-x='quiz:s' class='QR_'>
+						<span class='HT'>點擊展開</span>
+						<div data-o="O">for</div>
+						<div data-o="X">if</div>
+						<div data-o="X">while</div>
+					</div>
+					char
+					<div data-x='quiz:s' class='QR_'>
+						<span class='HT'>點擊展開</span>
+						<div data-o="X">and</div>
+						<div data-o="X">or</div>
+						<div data-o="O">in</div>
+						<div data-o="X">not</div>
+					</div>
+					x :
+				</div>
+				<div class='cb'>num += 1</div>
+				<div>print(num)</div>
+				<div>x = input("Enter a new word or QUIT to exit: ")</div>
+			</div>
+		</div></div>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_FC,Q_ITS'>
+	<!--{{{-->
+	<div data-x='quiz:c'>
+		<div>某間公司決定要發獎金給每年所得低於 150,000 美元的所有員工。</div>
+		<div>下列公式會根據基本薪資和固定獎金套用至每位員工 :</div>
+		<div class='cb'>新的薪資 = 目前薪資x103%+500美元獎金</div>
+		<div>您撰寫了程式碼,將員工薪資讀取到名為 salary_list 的變數中。</div>
+		<div>您需要完成針對每位合格員工薪資套用加薪公式的程式碼。</div>
+		<div class='frame'><div class='cb'>
+			<div># Each salary in the list is updated based on increase. Employees making</div>
+			<div># $150,000 or more will not get a raise.</div>
+			<div># Salary list is populated from employee database, code not shown.</div>
+			<div data-x='quiz:s' class='QR_'>
+				<span class='HT'>點擊展開</span>
+				<div data-o="X">for index in range(len(salary_list)+1):</div>
+				<div data-o="X">for index in range(len(salary_list)-1):</div>
+				<div data-o="O">for index in range(len(salary_list)):</div>
+				<div data-o="X">for index in salary_list:</div>
+			</div>
+			<div class='cb'>
+				<div>if salary_list[index] &gt;= 150000 :</div>
+				<div class='cb'>
+					<div data-x='quiz:s' class='QR_'>
+						<span class='HT'>點擊展開</span>
+						<div data-o="X">exit()</div>
+						<div data-o="O">continue</div>
+						<div data-o="X">break</div>
+						<div data-o="X">end</div>
+					</div>
+				</div>
+				<div>salary_list[index] = (salary_list[index] *1.03) +500</div>
+			</div>
+		</div></div>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_FC,Q_ITS'>
+	<!--{{{-->
+	<div data-x='quiz:c'>
+		<div>某間出版公司需要設法找出他們出版物中特定字母的數目,以便保持良好的平衡。</div>
+		<div>似乎一直有讀者在抱怨字母e的使用次數過多。您需要建立一個符合需求的函式。</div>
+		<div class='frame'><div class='cb'>
+			<div># Function accepts list of words from a file</div>
+			<div>#	 and letter to search for.</div>
+			<div># Returns count of a particular letter in that list.</div>
+			<div>def count_letter(letter, word_list):</div>
+			<div class='cb'>
+				<div>count = 0</div>
+				<div class='QMix'>
+					for
+					<div data-x='quiz:s' class='QR_'>
+						<span class='HT'>點擊展開</span>
+						<div data-o="X">word_list in word</div>
+						<div data-o="O">word in word_list</div>
+						<div data-o="X">word == word_list</div>
+						<div data-o="X">word is word_list</div>
+					</div>
+					:
+				</div>
+				<div class='cb'>
+					<div class='QMix'>
+						if
+						<div data-x='quiz:s' class='QR_'>
+							<span class='HT'>點擊展開</span>
+							<div data-o="X">word is letter</div>
+							<div data-o="X">letter is word</div>
+							<div data-o="X">word in letter</div>
+							<div data-o="O">letter in word</div>
+						</div>
+						:
+					</div>
+					<div class='cb'>count += 1</div>
+				</div>
+				<div>return count</div>
+			</div>
+			<div>word_list = []</div>
+			<div># word_list is populated from a file. Code not shown.</div>
+			<div>letter = input("which letter would you like to count")</div>
+			<div>letter_count = count_letter(letter, word_list)</div>
+			<div>print("There are: ", letter_count, "instances of " + letter)</div>
+		</div></div>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_FC,Q_ITS'>
+	<!--{{{-->
+	<div data-x='quiz:c'>
+		<div>某位同事撰寫了一個程式來輸入名稱至資料庫中。</div>
+		<div>然而,此程式卻將每個名稱中的字母前後顛倒。</div>
+		<div>您需要撰寫一個Python函式來按照正確順序輸出名稱中的字元。</div>
+		<div class='frame'><div class='cb'>
+			<div># Function reverses characters in a string.</div>
+			<div># return new string in reversed order.</div>
+			<div>def reverse_name(backward_name):</div>
+			<div class='cb'>
+				<div>forward_name = ""</div>
+				<div class='QMix'>
+					length = 
+					<div data-x='quiz:s' class='QR_'>
+						<span class='HT'>點擊展開</span>
+						<div data-o="X">backward_name:</div>
+						<div data-o="O">len(backward_name)-1</div>
+						<div data-o="X">range(0,len(backward_name),-1)</div>
+						<div data-o="X">range(len(backward_name)-1,-1,-1)</div>
+					</div>
+				</div>
+				<div>while length &gt;= 0:</div>
+				<div class='cb'>
+					<div class='QMix'>
+						forward_name += 
+						<div data-x='quiz:s' class='QR_'>
+							<span class='HT'>點擊展開</span>
+							<div data-o="X">backward_name[index]</div>
+							<div data-o="O">backward_name[length]</div>
+							<div data-o="X">backward_name[length+1]</div>
+							<div data-o="X">backward_name[len(backward_name)-len(forward_name)]</div>
+						</div>
+					</div>
+					<div>length = length-1</div>
+				</div>
+				<div>return forward_name</div>
+			</div>
+			<div>print(reverse_name("nohtyp"))</div>
+		</div></div>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_FC,Q_ITS'>
+	<!--{{{-->
+	<div data-x='quiz:c'>
+		<div>您評估下列程式碼時發現錯誤。加上行號僅為參考之用。</div>
+		<div>您必須更正下列程式碼。</div>
+		<div>請評估這段程式碼,然後從每個下拉式清單中選取正確的選項以回答問題。</div>
+		<div class='iframe'><div class='cb'>
+			<div>numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]</div>
+			<div>index = 0</div>
+			<div data-x='quiz:s' class='QR_'>
+				<span class='HT'><s>while (index &lt;10)</s> # 點擊展開</span>
+				<div data-o="O">while (index&lt;10):</div>
+				<div data-o="X">while [index&lt;10]</div>
+				<div data-o="X">while (index&lt;5)</div>
+				<div data-o="X">while [index&lt;5]</div>
+			</div>
+			<div class='cb'>
+				<div>print(numbers[index])</div>
+				<div data-x='quiz:s' class='QR_'>
+					<span class='HT'><s>if numbers(index) = 6</s> # 點擊展開</span>
+					<div data-o="X">if numbers[index]==6</div>
+					<div data-o="O">if numbers[index]==6:</div>
+					<div data-o="X">if numbers(index)=6:</div>
+					<div data-o="X">if numbers(index)!=6</div>
+				</div>
+				<div class='cb'>break</div>
+				<div>else :</div>
+				<div class='cb'>index += 1</div>
+			</div>
+		</div></div>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_FC,Q_ITS'>
+	<!--{{{-->
+	<div data-x='quiz:c'>
+		<div>某間公司要求您為造成薪資問題的部分程式碼偵錯。</div>
+		<div>他們要求您找出薪資錯誤的來源。已經宣告的變數如下:</div>
+		<div class='frame'><div class='cb'>
+			<div>employee_pay = [15000, 120000, 35000, 45000]</div>
+			<div>count = 0</div>
+			<div>sum = 0</div>
+		</div></div>
+		<div>下列程式碼有兩個錯誤需要修正 :</div>
+		<div class='cb frame'>
+			<div class='QMix'>
+				for index in range
+				<div data-x='quiz:s' class='QR_'>
+					<span class='HT'><s>(0, len(employee_pay)-1):</s> # 點擊展開</span>
+					<div data-o="X">(size(employee_pay)):</div>
+					<div data-o="X">(size(employee_pay)-1):</div>
+					<div data-o="X">(len(employee_pay)+1):</div>
+					<div data-o="O">(len(employee_pay)):</div>
+				</div>
+			</div>
+			<div class='cb'>
+				<div>count += 1</div>
+				<div>sum += employee_pay[index]</div>
+			</div>
+			<div class='QMix'>
+				average = 
+				<div data-x='quiz:s' class='QR_'>
+					<span class='HT'><s>sum//count</s> # 點擊展開</span>
+					<div data-o="O">sum/count</div>
+					<div data-o="X">sum**count</div>
+					<div data-o="X">sum*count</div>
+				</div>
+			</div>
+			<div>print("The total payroll is:", sum)</div>
+			<div>print("The average salary is:", average)</div>
+		</div>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_FC,Q_ITS'>
+	<!--{{{-->
+	<div data-x='quiz:sort'>
+		<div>您正在建置一個Python程式來顯示2到100之間的所有質數(質數是指只有該數字本身和1能整除的任何數字)。</div>
+		<div>請依序點擊適當的程式碼片段選擇與排序程式碼。</div>
+
+		<div class='cb frame'>
+			<div data-o='2'><div class='cb'><div class='cb'><div class='cb'>break</div></div></div></div>
+			<div data-o='0'><div>p=2</div><div>while p &lt;=100 :</div><div class='cb'>is_prime = True</div></div>
+			<div data-o='-'><div class='cb'><div class='cb'><div class='cb'>continue</div></div></div></div>
+			<div data-o='1'><div class='cb'>for i in range(2, p):<div class='cb'><div>if p% i ==0:</div><div class='cb'>is_prime = False</div></div></div></div>
+			<div data-o='4'><div class='cb'>p = p + 1</div></div>
+			<div data-o='-'><div>p = 2</div><div>is_prime = True</div><div>while p &lt;= 100:</div></div>
+			<div data-o='3'><div class='cb'>if is_prime == True:<div class='cb'>print(p)</div></div></div>
+		</div>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_FC,Q_ITS'>
+	<!--{{{-->
+	<div data-x='quiz:c'>
+		<div>您正在撰寫符合下列需求的程式碼:<ul>
+			<li>允許使用者不斷輸入字詞。</li>
+			<li>輸出每個字詞的字元數。</li>
+		</ul></div>
+		<div>請從每個下拉式清單中選取正確的選項以完成程式碼。</div>
+		<div>請注意:每一個答對的項目都能獲得部分分數。</div>
+
+		<div class='frame'><div class='cb'>
+			<div>x = 'Hello World'</div>
+			<div class='QMix'>
+				<div data-x='quiz:s' class='QR_'>
+					<span class='HT'>點擊展開</span>
+					<div data-o='X'>for</div>
+					<div data-o='X'>if</div>
+					<div data-o='O'>while</div>
+				</div>
+				x != 'QUIT' :
+			</div>
+			<div class='cb'>
+				<div>num = 0</div>
+				<div class='QMix'>
+					<div data-x='quiz:s' class='QR_'>
+						<span class='HT'>點擊展開</span>
+						<div data-o='O'>for</div>
+						<div data-o='X'>if</div>
+						<div data-o='X'>while</div>
+					</div>
+					char
+					<div data-x='quiz:s' class='QR_'>
+						<span class='HT'>點擊展開</span>
+						<div data-o='X'>and</div>
+						<div data-o='X'>or</div>
+						<div data-o='O'>in</div>
+						<div data-o='X'>not</div>
+					</div>
+					x :
+				</div>
+				<div class='cb'>num += 1</div>
+				<div>print(num)</div>
+				<div>x = input('Enter a new word or QUIT to exit: ')</div>
+			</div>
+		</div></div>
+	</div>
+	<!--}}}-->
+</section>
+
+<!--}}}-->
+
+<!--{{{ PART-3: Data Structure -->
+
+<section data-ks='P_DS'>
+	<h2>Operator []</h2>
+	<table class='syntax' style='margin:auto;'><tr>
+		<th><span class='V'>集合資料</span></th>
+		<th><span class='K'>[</span></th>
+		<th><span class='V'>起始位置</span></th>
+		<th><span class='K'>,</span></th>
+		<th><span class='V'>終止位置</span></th>
+		<th><span class='K'>,</span></th>
+		<th><span class='V'>步伐大小</span></th>
+		<th><span class='K'>]</span></th>
+	</tr><tr>
+		<th>修課名單</th><th></th><th>5</th><th></th><th>20</th><th></th><th>1</th><th></th>
+	</tr><tr><td colspan='8'>
+		從修課名單第五位同學開始，至第二十位同學前的所有同學。
+	</td></tr><tr>
+		<th colspan='8' class='blue'>間隔取值</th>
+	</tr><tr>
+		<th>修課名單</th><th></th><th>5</th><th></th><th>20</th><th></th><th>2</th><th></th>
+	</tr><tr><td colspan='8'>
+		從修課名單第五位同學開始，至第二十位同學前的<span class='red'>每隔一位</span>同學選取一個。
+	</td></tr><tr>
+		<th colspan='8' class='blue'>倒退取值</th>
+	</tr><tr>
+		<th>修課名單</th><th></th><th>20</th><th></th><th>5</th><th></th><th>-2</th><th></th>
+	</tr><tr><td colspan='8'>
+		從修課名單第二十位同學開始，<span class='red'>倒著</span>選取至第五位同學後，<span class='red'>每隔一位</span>同學選取一個。
+	</td></tr><tr>
+		<th colspan='8' class='blue'>省略步伐大小</th>
+	</tr><tr>
+		<th>修課名單</th><th></th><th>5</th><th></th><th>20</th><th></th><th>省略</th><th></th>
+	</tr><tr><td colspan='8'>
+		從修課名單第五位同學開始，至第二十位同學前的<span class='red'>所有同學</span>。
+	</td></tr><tr>
+		<th colspan='8' class='blue'>省略步伐大小，與起始位置</th>
+	</tr><tr>
+		<th>修課名單</th><th></th><th>省略</th><th></th><th>20</th><th></th><th>省略</th><th></th>
+	</tr><tr><td colspan='8'>
+		從修課名單<span class='red'>第一位</span>同學開始，至第二十位同學前的<span class='red'>所有同學</span>。
+	</td></tr><tr>
+		<th colspan='8' class='blue'>倒數第幾個</th>
+	</tr><tr>
+		<th>修課名單</th><th></th><th>-20</th><th></th><th>-5</th><th></th><th>1</th><th></th>
+	</tr><tr><td colspan='8'>
+		從修課名單<span class='red'>倒數第二十位</span>同學開始，至<span class='red'>倒數第五位</span>同學前的<span class='red'>所有同學</span>。
+	</td></tr></table>
+</section>
+
+<section data-ks='P_DS'>
+	<h2>🔢 內建函數: 串列</h2><!--{{{-->
+	<table class='ltable'><thead><tr>
+		<th>函式</th><th>參數</th><th>功能</th><th>範例</th><th>結果</th>
+	</tr><tr>
+		<th class='ar'>len</th><th class='al'>(x)</th>
+		<td>取得元素個數</td>
+		<td>len([1,3,5,7])</td>
+		<td class='ac'>4</td>
+	</tr><tr>
+		<th class='ar'>sorted</th><th class='al'>( 串列 )</th>
+		<td>由小到大排序</td>
+		<td>sorted([3,1,7,5])</td>
+		<td class='ac'>[1,3,5,7]</td>
+	</tr><tr>
+		<th class='ar'>sum</th><th class='al'>( 串列 )</th>
+		<td>計算串列元素的總和</td>
+		<td>sum([1,3,5,7])</td>
+		<td class='ac'>16</td>
+	</tr></tbody></table>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_DS,Q_ITS'>
+	<!--{{{ [] -->
+	<div data-x='quiz:m'>
+		<div>你為公司設計了一個 Python 應用程式，在 members 的清單中包含了 50 位會員的姓名，最後 5 名是 VIP 會員。</div>
+		<div>你需要分割清單內容顯示除了 VIP 會員以外的一般會員，你可以利用以下哪二個程式碼達成？</div>
+		<div data-o='X'>members [-5 : 0]</div>
+		<div data-o='O'>members [0 : -5]</div>
+		<div data-o='X'>members [1 : -5]</div>
+		<div data-o='O'>members [ : -5]</div>
+		<div data-o='X'>members [1 : 5]</div>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_DS,Q_ITS'>
+	<!--{{{ [] -->
+	<div data-x='quiz:c'>
+		<div>您需要識別針對下列順序結構執行各種配量作業的結果:</div>
+		<div class='cb frame'>
+			<div>alph = 'abcdefghijklmnopqrstuvwxyz'</div>
+		</div>
+		<div class='QMix'>
+			alph[3:15] → 
+			<div data-x='quiz:s' class='QR_'>
+				<span class='HT'>點擊展開</span>
+				<div data-o='O'>defghijklmno</div>
+				<div data-o='X'>pmjg</div>
+				<div data-o='X'>defghijklmnop</div>
+				<div data-o='X'>ponmlkjihgfe</div>
+				<div data-o='X'>dgjm</div>
+				<div data-o='X'>zwtqnkheb</div>
+			</div>
+		</div>
+		<div class='QMix'>
+			alph[3:15:3] → 
+			<div data-x='quiz:s' class='QR_'>
+				<span class='HT'>點擊展開</span>
+				<div data-o='X'>defghijklmno</div>
+				<div data-o='X'>pmjg</div>
+				<div data-o='X'>defghijklmnop</div>
+				<div data-o='X'>ponmlkjihgfe</div>
+				<div data-o='O'>dgjm</div>
+				<div data-o='X'>zwtqnkheb</div>
+			</div>
+		</div>
+		<div class='QMix'>
+			alph[15:3:-3] → 
+			<div data-x='quiz:s' class='QR_'>
+				<span class='HT'>點擊展開</span>
+				<div data-o='X'>defghijklmno</div>
+				<div data-o='O'>pmjg</div>
+				<div data-o='X'>defghijklmnop</div>
+				<div data-o='X'>ponmlkjihgfe</div>
+				<div data-o='X'>dgjm</div>
+				<div data-o='X'>zwtqnkheb</div>
+			</div>
+		</div>
+		<div class='QMix'>
+			alph[::-3] → 
+			<div data-x='quiz:s' class='QR_'>
+				<span class='HT'>點擊展開</span>
+				<div data-o='X'>defghijklmno</div>
+				<div data-o='X'>pmjg</div>
+				<div data-o='X'>defghijklmnop</div>
+				<div data-o='X'>ponmlkjihgfe</div>
+				<div data-o='X'>dgjm</div>
+				<div data-o='O'>zwtqnkheb</div>
+			</div>
+		</div>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_DS,Q_ITS'>
+	<!--{{{ [] -->
+	<div data-x='quiz:c'>
+		<div>您需要識別針對下列順序結構執行各種配量作業的結果：</div>
+		<div class='cb frame'>
+			<div>alph = 'abcdefghijklmnopqrstuvwxyz'</div>
+		</div>
+		<div class='QMix'>
+			alph[3:6] →
+			<div data-x='quiz:s' class='QR_'>
+				<span class='HT'>點擊展開</span>
+				<div data-o='O'>def</div><div data-o='X'>abcdef</div>
+				<div data-o='X'>cde</div><div data-o='X'>defg</div>
+				<div data-o='X'>cdef</div><div data-o='X'>abcde</div>
+			</div>
+		</div>
+		<div class='QMix'>
+			alph[:6] → 
+			<div data-x='quiz:s' class='QR_'>
+				<span class='HT'>點擊展開</span>
+				<div data-o='X'>def</div><div data-o='O'>abcdef</div>
+				<div data-o='X'>cde</div><div data-o='X'>defg</div>
+				<div data-o='X'>cdef</div><div data-o='X'>abcde</div>
+			</div>
+		</div>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_DS,Q_ITS'>
+	<!--{{{ in -->
+	<div data-x='quiz:s'>
+		<div>在下列的程式碼中：</div>
+		<div class='frame'><div class='cb'>
+			<div>slist = ["a", "b", "c", "d", "e", "f"]</div>
+			<div>print("f" in slist)</div>
+		</div></div>
+		<div>執行後會輸出列印的內容為？</div>
+		<div class='cols'>
+			<div data-o='X'>5</div>
+			<div data-o='X'>6</div>
+			<div data-o='O'>True</div>
+			<div data-o='X'>False</div>
+		</div>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_DS,Q_ITS'>
+	<!--{{{ is -->
+	<div data-x='quiz:c'>
+		<div>您正在為公司開發一個Python應用程式。</div>
+		<div>您撰寫了以下這段程式碼:</div>
+		<div class='frame'><div class='cb'>
+			<div>numList = [1, 2, 3, 4, 5]</div>
+			<div>alphaList = ['a', 'b', 'c', 'd', 'e']</div>
+			<div>print(numList is alphaList)</div>
+			<div>print(numList == alphaList)</div>
+			<div>numList = alphaList</div>
+			<div>print(numList is alphaList)</div>
+			<div>print(numList == alphaList)</div>
+		</div></div>
+		<div data-x='quiz:s'>
+			請問第一個print後面顯示的內容為何?
+			<div class='cols'><div data-o='X'>True</div><div data-o='O'>False</div></div>
+		</div>
+		<div data-x='quiz:s'>
+			請問第二個print後面顯示的內容為何?
+			<div class='cols'><div data-o='X'>True</div><div data-o='O'>False</div></div>
+		</div>
+		<div data-x='quiz:s'>
+			請問第三個print後面顯示的內容為何?
+			<div class='cols'><div data-o='O'>True</div><div data-o='X'>False</div></div>
+		</div>
+		<div data-x='quiz:s'>
+			請問第四個print後面顯示的內容為何?
+			<div class='cols'><div data-o='O'>True</div><div data-o='X'>False</div></div>
+		</div>
+	</div>
+	<!--}}}-->
+</section>
+
+<!--}}}-->
+
+<!--{{{ PART-4: Code Structure -->
+
+<section data-ks='P_CS'>
+	<h2>🛠️ 程式註解</h2><!--{{{-->
+	<h3>💻 定義與目的</h3>
+	<div>程式註解是一種在原始碼中插入的<strong>非執行性文字</strong>。它的主要特點是：</div>
+	<ul>
+	<li><strong>不被編譯或執行</strong><div class='explain'>
+		當程式碼被編譯器或直譯器處理時，註解會被完全忽略。它們不會影響程式的實際運作或輸出結果。
+	</div></li>
+	<li><strong>目的在於溝通</strong><div class='explain'>
+		註解是用來向<strong>人類讀者</strong>（包括未來的您自己、協作的同事，或任何需要維護此程式碼的人）
+		解釋程式碼的功能、原理、目的或任何重要細節。
+	</div></li>
+	</ul>
+	<h3>✨ 主要作用</h3>
+	<p>程式註解是良好程式設計習慣的<strong>基石</strong>，它們提供了幾項關鍵的價值：</p>
+	<ul>
+	<li><strong>解釋複雜邏輯</strong><div class='explain'>
+		說明一段難以理解或不尋常的演算法是如何運作的。
+	</div></li>
+	<li><strong>說明程式意圖 (Why)</strong><div class='explain'>
+		解釋為什麼要這樣寫，而不是解釋程式碼做了什麼 (程式碼本身通常已經說明了 "What")。
+	</div><div class='explain'>
+		例如，解釋為什麼選擇這個特定的資料結構或解決方案。
+	</div></li>
+	<li><strong>標記重要資訊</strong><div class='explain'>
+		提示需要注意的<strong>錯誤 (Bug)</strong>、
+	</div><div class='explain'>
+		未完成的<strong>待辦事項 (TODO)</strong>，
+	</div><div class='explain'>
+		或未來可能需要的<strong>改進 (FIXME)</strong>。
+	</div></li>
+	<li><strong>產生文件</strong><div class='explain'>
+		某些語言（如 JavaDoc, Python Docstrings），特定格式的註解可用來自動生成專案的 API 文件。
+	</div></li>
+	<li><strong>臨時禁用程式碼</strong><div class='explain'>
+		在測試或偵錯時，可以用註解快速將某段程式碼暫時排除在執行之外，而不必刪除它。
+	</div></li>
+	</ul>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_CS,Q_ITS'>
+	<!--{{{ # -->
+	<div data-x='quiz:s'>
+		您為公司開發了一個Python應用程式。<br />
+		您想要在自己的程式碼中加入附註,好讓其他團隊成員能夠了解。<br />
+		請問您應該採取下列哪一項做法?
+		<div data-o="X">在任何一行的 // 後面放置附註。</div>
+		<div data-o="X">在任何程式碼片段的 /*和 */之間放置附註。</div>
+		<div data-o="O">在任何一行的 #後面放置附註。</div>
+		<div data-o="X">在任何程式碼片段的 之間放置附註。</div>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_CS,Q_ITS'>
+	<!--{{{ # -->
+	<div data-x='quiz:s'>
+		<div>某間銀行要將他們舊有的銀行交易程式碼轉至Python。</div>
+		<div>該銀行雇用您來記錄已移轉的程式碼。</div>
+		<div>請問哪個文件記錄語法是正確的?</div>
+		<div data-o='X'>
+			<div class="cb">
+				<div>def get_balance():</div>
+				<div class='cb'>
+					<div>/* Returns the current balance of the bank account */</div>
+					<div>return balance</div>
+				</div>
+			</div>
+		</div>
+		<div data-o='X'>
+			<div class="cb">
+				<div>def get_balance():</div>
+				<div class='cb'>
+					<div>// Returns the current balance of the bank account</div>
+					<div>return balance</div>
+				</div>
+			</div>
+		</div>
+		<div data-o='X'>
+			<div class="cb">
+				<div>def get_balance():</div>
+				<div class='cb'>
+					<div>' Returns the current balance of the bank account</div>
+					<div>return balance</div>
+				</div>
+			</div>
+		</div>
+		<div data-o='O'>
+			<div class="cb">
+				<div>def get_balance():</div>
+				<div class="cb">
+					<div># Returns the current balance of the bank account</div>
+					<div>return balance</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_CS,Q_ITS'>
+	<!--{{{ # -->
+	<div data-x='quiz:c'>
+		您建立了下列 Python 函式來計算數字的次方。
+		<div class="frame"><div class="cb" style="position:relative">
+			<div># The calc_power function calculates exponents</div>
+			<div># x is the base</div>
+			<div># y is the exponent</div>
+			<div># The value of x raised to the y power is returned</div>
+			<div>def calc_power(x, y):</div>
+			<div class="cb">
+				<div>comment = '# Return the value'</div>
+				<div>return x ** y # raise x to the y power</div>
+			</div>
+			<div style="position:absolute;left:0;top:0;color:red;">01<br/>02<br/>03<br/>04<br/>05<br/>06<br/>07</div>
+		</div></div>
+		<div data-x='quiz:s'>
+			Python不會檢查第01到04行的語法。
+			<table width='100%'><tr><th width='50%' data-o='O'>正確</th><th data-o='X'>錯誤</th></tr></table>
+		</div>
+		<div data-x='quiz:s'>
+			第02和03行的井字號(#)是選擇性的。
+			<table width='100%'><tr><th width='50%' data-o='X'>正確</th><th data-o='O'>錯誤</th></tr></table>
+		</div>
+		<div data-x='quiz:s'>
+			第06行的字串將解釋為註解。
+			<table width='100%'><tr><th width='50%' data-o='X'>正確</th><th data-o='O'>錯誤</th></tr></table>
+		</div>
+		<div data-x='quiz:s'>
+			第07行包含內嵌註解。
+			<table width='100%'><tr><th width='50%' data-o='O'>正確</th><th data-o='X'>錯誤</th></tr></table>
+		</div>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_CS'>
+	<h2>🛠️ 程式函數 (Function)</h2><!--{{{-->
+	<div><strong>函數</strong>（Function）可以想像成一個<strong>有特定任務的小型機器或配方</strong>。</div>
+
+	<h3>定義</h3>
+	<div>函數是組織程式碼的一種方式。</div>
+	<div>它是一個<strong>被命名的、獨立的程式碼區塊</strong>，設計用於執行特定的任務或計算。</div>
+
+	<h3>目的</h3>
+	<ul>
+	<li><strong>重用性 (Reusability)：</strong><div class='explain'>
+		您可以寫一次程式碼，然後在程式的不同地方多次呼叫（執行）這個函數，避免重複撰寫相同的邏輯。
+	</div></li>
+	<li><strong>模組化 (Modularity)：</strong><div class='explain'>
+		將大型程式拆分成許多小、專注的函數，使程式碼更容易理解、測試和維護。
+	</div></li>
+	<li><strong>抽象化 (Abstraction)：</strong><div class='explain'>
+		使用者只需要知道函數的名稱和它做什麼（例如 calculate_area(length, width)），而不需要知道它是如何實現計算的內部細節。
+	</div></li>
+	</ul>
+
+	<h3>範例</h3>
+	<div class='frame'><div class='cb'>
+		<div>def calculate_sum(a, b): <span style="color:red"># 這是函數定義 (Function Definition)</span></div>
+		<div class='cb'>
+			<div>result = a + b</div>
+			<div>return result</div>
+		</div>
+		<br/>
+		<div>total = calculate_sum(5, 3) <span style="color:red"># 這是函數呼叫 (Function Call)</span></div>
+	</div></div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_CS'>
+	<h2>📦 參數/引數 (Arguments)</h2><!--{{{-->
+	<div><strong>定義：</strong><div class='explain'>
+		參數是在呼叫函數時，提供給函數的值。這些值在函數的內部會被當作區域變數來使用。
+	</div></div>
+	<div><strong>用途：</strong><div class='explain'>
+		如果函數需要某些特定的資料才能完成其工作，這些資料就必須以參數的形式傳遞。
+	</div></div>
+	<table border='1' cellspacing='0' cellpadding='8' width='100%'><tr>
+		<th>形參</th><th>Parameter</th><td>在函數定義中宣告的變數名稱</td>
+	</tr><tr>
+		<td colspan='3'>
+			<div class='frame'><div class='cb'>
+				<div style="color:red"># 函數定義時的 (a, b) 稱為形參 (Parameters)</div>
+				<div>def calculate_sum(a, b):</div>
+				<div class='cb'>
+   					<div>result = a + b</div>
+   					<div>return result</div>
+				</div>
+			</div></div>
+		</td>
+	</tr><tr>
+		<th>實參</th><th>Argument</th><td>在函數呼叫時傳入的實際值</td>
+	</tr><tr>
+		<td colspan='3'>
+			<div class='frame'><div class='cb'>
+				<div style="color:red"># 函數呼叫時的 (5, 3) 稱為實參 (Arguments)</div>
+				<div>total = calculate_sum(5, 3) # 這是函數呼叫 (Function Call)</div>
+			</div>
+		</td>
+	</tr></table>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_CS'>
+	<h2>回傳值 (Return Value)</h2><!--{{{-->
+	<p><strong>回傳值</strong>（Return Value）是<strong>函數執行完畢後給出的輸出結果</strong>。</p>
+	<div class='tab'><div style='text-align:center'>
+		<button TID='1' style='width:32%'><h3>定義</h3></button>
+		<button TID='2' style='width:32%'><h3>用途</h3></button>
+		<button TID='3' style='width:32%'><h3>範例</h3></button>
+	</div><div TAB='1'>
+		<div>回傳值是函數執行完其工作後，將結果傳遞回呼叫者（Calling Code）的一種機制。</div>
+	</div><div TAB='2'>
+		<ul>
+		<li>如果函數的任務是計算或產生一個結果 (如計算總和、查詢資料庫、生成報表)，它會使用 return 關鍵字將這個結果送出。</li>
+		<li>函數只能回傳<strong>一個</strong>值（雖然這個值可以是複雜的資料結構，如列表或物件）。</li>
+		<li>有些函數執行動作（如印出訊息或儲存檔案），但沒有需要回傳的計算結果，這種函數可以不寫 return，或隱式回傳一個特殊的「空值」 (例如 Python 的 None 或 C/Java 的 void)。</li>
+		</ul>
+	</div><div TAB='3'>
+		<div class='frame'><div class='cb'>
+			<div>def calculate_sum(a, b):</div>
+			<div class='cb'>
+				<div>result = a + b</div>
+				<div style="color:red"># 使用 return 關鍵字將計算結果 (result 的值 8) 傳回去</div>
+				<div>return result</div>
+			</div>
+			<br/>
+			<div style="color:red"># 呼叫函數後，回傳值 8 會被賦予給變數 total</div>
+			<div>total = calculate_sum(5, 3) <span style='color:red'># total 的值現在是 8</span></div>
+			<div>print(total) <span style='color:red'># 輸出 8</span></div>
+		</div></div>
+	</div></div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_CS'>
+	<h2>🐍 Python 函數參數的類型 (Parameters in Python)</h2><!--{{{-->
+	<p>Python 參數主要可以根據<strong>傳遞方式</strong>（位置或名稱）和<strong>數量</strong>（固定或可變）來區分。</p>
+	<table class='tab' border='0' width='100%'><thead style='background:#eee'><tr>
+		<th>基本參數類型</th>
+		<th TID='1'><button style="width:100%">位置參數</button></th>
+		<th TID='2'><button style="width:100%">預設參數</button></th>
+	</tr><tr>
+		<th>可變長度參數</th>
+		<th TID='3'><button style="width:100%">位置參數集合</button></th>
+		<th TID='4'><button style="width:100%">關鍵字參數集合</button></th>
+	</tr><tr>
+		<th>僅限傳遞方式的參數</th>
+		<th TID='5'><button style="width:100%">僅限位置參數</button></th>
+		<th TID='6'><button style="width:100%">僅限關鍵字參數</button></th>
+	</tr></thead><tbody><tr>
+		<td TAB='1' colspan='3'>
+			<h3>必填的位置參數 (Positional-or-Keyword)</h4>
+			<ul>
+			<li><strong>定義：</strong> 這些是函數定義中<strong>必須提供值</strong>的參數，如果呼叫時未提供，程式會拋出錯誤。</li>
+			<li><strong>傳遞方式：</strong> 您可以<strong>按順序</strong>傳遞值 (位置傳遞)，也可以<strong>使用名稱</strong>傳遞值 (關鍵字傳遞)。</li>
+			<li><p><strong>範例：</strong>
+				<div class=frame'><div class='cb'>
+					<div>def greet(name, message):</div>
+					<div class='cb'>print(f"Hello, {name}! {message}")</div>
+					<br/>
+					<div style='color:red'># 兩種呼叫方式都有效</div>
+					<div>greet("Alice", "Good morning.") # 位置傳遞 (按順序)</div>
+					<div>greet(message="How are you?", name="Bob") # 關鍵字傳遞 (按名稱)</div>
+				</div></div>
+			</li>
+			</ul>
+		</td>
+	</tr><tr>
+		<td TAB='2' colspan='3'>
+			<h3>具有預設值的參數 (Default Arguments)</h4>
+			<ul>
+			<li><strong>定義：</strong> 在函數定義時，為參數提供一個<strong>預設值</strong>。</li>
+			<li><strong>特性：</strong><ul>
+				<li><strong>可選 (Optional)：</strong> 如果呼叫函數時沒有為此參數提供值，它將使用預設值。</li>
+				<li><strong>必須放在後面：</strong> 任何帶有預設值的參數<strong>必須</strong>定義在所有沒有預設值的參數之後。</li>
+			</ul></li>
+			<li><p><strong>範例：</strong>
+				<div class='frame'><div class='cb'>
+<div>def power(base, exponent=2): <span style='color:red'># exponent 有預設值 2</span></div>
+<div class='cb'>return base ** exponent</div>
+<br/>
+<div>result1 = power(3)		<span style='color:red'># 呼叫時省略 exponent，使用預設值 2 (3**2 = 9)</span></div>
+<div>result2 = power(3, 4)	 <span style='color:red'># 呼叫時提供 exponent，覆蓋預設值 (3**4 = 81)</span></div>
+				</div></div>
+			</li>
+			</ul>
+		</td>
+	</tr><tr>
+		<td TAB='3' colspan='3'>
+			<h3>位置參數集合 (*args)</h3>
+			<ul>
+			<li><strong>語法：</strong> 在參數名稱前加上單個星號 (*)。</li>
+			<li><strong>用途：</strong> 用來接收<strong>任意數量的</strong>、<strong>額外的</strong>、<strong>位置</strong>傳遞的參數。</li>
+			<li><strong>特性：</strong> 傳入的所有位置參數會被打包成一個<strong>元組 (Tuple)</strong>。</li>
+			<li><p><strong>範例：</strong></p>
+				<div class='iframe'><div class='cb'>
+					<div>def print_all(*names): # names 是一個 tuple
+					<div class='cb'>
+						<div>for name in names:</div>
+						<div class='cb'>print(name)</div>
+					</div>
+					<div>print_all("A", "B", "C", "D") <span style='color:red'># 傳入了 4 個參數</span></div>
+					<div style='color:red'># names 的值會是 ("A", "B", "C", "D")</div>
+				</div></div>
+			</li>
+			</ul>
+		</td>
+	</tr><tr>
+		<td TAB='4' colspan='3'>
+			<h3>關鍵字參數集合 (**kwargs)</h3>
+			<ul>
+			<li><strong>語法：</strong> 在參數名稱前加上兩個星號 (**)。</li>
+			<li><strong>用途：</strong> 用來接收<strong>任意數量的</strong>、<strong>額外的</strong>、<strong>關鍵字</strong>傳遞的參數。</li>
+			<li><strong>特性：</strong> 傳入的所有關鍵字參數會被打包成一個<strong>字典 (Dictionary)</strong>。</li>
+			<li><p><strong>範例：</strong></p>
+				<div class='frame'><div class='cb'>
+					<div>def print_profile(name, **info): <span style='color:red'># info 是一個 dictionary</span></div>
+					<div class='cb'>
+						<div>print(f"Name: {name}")</div>
+						<div>for key, value in info.items():</div>
+						<div class='cb'>print(f"{key}: {value}")</div>
+					</div>
+					<br/>
+					<div>print_profile("Alice", age=30, city="Taipei") </div>
+					<div style='color:red'># info 的值會是 {'age': 30, 'city': 'Taipei'}</div>
+				</div></div>
+			</li>
+			</ul>
+		</td>
+	</tr><tr>
+		<td TAB='5' colspan='3'>
+			<h3>僅限位置參數 (Positional-Only Parameters)</h3>
+			<ul>
+			<li><strong>語法：</strong> 在所有僅限位置參數之後加上一個斜線 (/)。</li>
+			<li><strong>限制：</strong> 斜線前的參數<strong>只能</strong>通過它們在順序中的<strong>位置</strong>來傳遞，<strong>不能</strong>使用名稱 (關鍵字) 來傳遞。</li>
+			<li><strong>用途：</strong> 主要用於 API 設計，強制使用者依賴位置，避免因參數名稱變更而破壞程式碼。</li>
+			<li><p><strong>範例：</strong></p>
+				<div class='frame'><div class='cb'>
+					<div>def combined(a, b, /, c, d):</div>
+					<div class='cb'>pass</div>
+					<br/>
+					<div>combined(1, 2, c=3, d=4) <span style='color:red'># 正確：a, b 必須是位置傳遞</span></div>
+					<div style='color:red'># combined(a=1, b=2, c=3, d=4) # 錯誤：a, b 不能使用關鍵字傳遞</div>
+				</div></div>
+			</li>
+			</ul>
+		</td>
+	</tr><tr>
+		<td TAB='6' colspan='3'>
+			<h3>僅限關鍵字參數 (Keyword-Only Parameters)</h3>
+			<ul>
+			<li><strong>語法：</strong> 在所有僅限關鍵字參數之前加上一個單星號 (*)。這個星號可以是單獨的，或者跟在 *args 參數之後。</li>
+			<li><strong>限制：</strong> 星號後的參數<strong>只能</strong>通過它們的<strong>名稱</strong> (關鍵字) 來傳遞，<strong>不能</strong>通過位置來傳遞。</li>
+			<li><strong>用途：</strong> 確保程式碼的可讀性，特別是對於那些不常用或含義不明確的參數。</li>
+			<li><p><strong>範例：</strong></p>
+				<div class='frame'><div class='cb'>
+					<div>def configure(debug=False, *, verbose=False):</div>
+					<div class='cb'>print(f"Debug: {debug}, Verbose: {verbose}")</div>
+					<br/>
+					<div>configure(debug=True, verbose=True) <span style='color:red'># 正確：verbose 必須是關鍵字傳遞</span></div>
+					<div style='color:red'># configure(True, True) # 錯誤：verbose 不能用位置傳遞</div>
+				</div></div>
+			</li>
+			</ul>
+		</td>
+	</tr></tbody></table>
+
+	<h3>📋 總結：函數參數的完整順序</h3>
+	<p>在 Python 的函數定義中，所有類型的參數<strong>必須</strong>按照以下嚴格的順序出現：</p>
+	<ol>
+		<li><strong>僅限位置參數</strong> (Positional-Only)</li>
+		<li><strong>位置或關鍵字參數</strong> (Positional-or-Keyword, 無預設值)</li>
+		<li><strong>位置或關鍵字參數</strong> (Positional-or-Keyword, <strong>有預設值</strong>)</li>
+		<li><strong>單星號分隔符</strong> (*) 或 *args (用來標記後面的參數為僅限關鍵字)</li>
+		<li><strong>僅限關鍵字參數</strong> (Keyword-Only)</li>
+		<li><strong>雙星號字典</strong> (**kwargs)</li>
+	</ol>
+	<p><strong>完整範例：</strong></p>
+	<div class='frame'><div class='cb'>
+		<div>def full_example(
+		<div class='cb'>
+			<div>pos1, pos2, /, pos_or_kwd, default_val=10,</div>
+			<div>*args, kwd_only1, kwd_only2=20, **kwargs</div>
+		</div>
+		<div>):</div>
+		<div class='cb'>pass</div>
+	</div></div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_CS,Q_ITS'>
+	<!--{{{ ()-->
+	<div data-x='quiz:m'>
+		學生們正在參加學校的活動之夜。下列函式會告訴學生該前往何處參加活動:
+		<div class="cb frame">
+			<div>def roomAssignment (student, year) :</div>
+			<div class="cb">
+				<div>"""Assign rooms to students"""</div>
+				<div>if year == 1:</div>
+				<div class="cb">print(f'\n{student.title()}, please report to room 115')</div>
+				<div>elif year == 2:</div>
+				<div class="cb">print(f'\n{student.title()}, please report to room 210')</div>
+				<div>elif year == 3:</div>
+				<div class="cb">print(f'\n{student.title()}, please report to room 320')</div>
+				<div>elif year == 4:</div>
+				<div class="cb">print(f'\n{student.title()}, please report to room 405')</div>
+				<div>elif year == 5:</div>
+				<div class="cb">print(f'\n{student.title()}, please report to room 515')</div>
+				<div>else:</div>
+				<div class="cb">print(f'\n{student.title()}, please report to room 625')</div>
+			</div>
+		</div>
+		請問哪兩個是正確的　？
+		<div data-o="O">
+			<div class="cb">
+				<div>name = input('What is your name?')</div>
+				<div>grade=0</div>
+				<div>while grade not in (1,2,3,4,5,6):</div>
+				<div class="cb">grade = int(input('What grade are you in (1-6)?'))</div>
+				<div>roomAssignment(name,year=grade)</div>
+			</div>
+		</div>
+		<div data-o="X">
+			<div class="cb">
+				<div>name = input('What is your name?')</div>
+				<div>grade=0</div>
+				<div>while grade not in (1,2,3,4,5,6):</div>
+				<div class="cb">grade = int(input('What grade are you in (1-6)?'))</div>
+				<div>roomAssignment(student,year)</div>
+			</div>
+		</div>
+		<div data-o="O">
+			<div class="cb">
+				roomAssignment('Sherlock Sassafrass',4)
+			</div>
+		</div>
+		<div data-o="X">
+			<div class="cb">
+				roomAssignment(year=6,name='Minnie George')
+			</div>
+		</div>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_CS,Q_ITS'>
+	<!--{{{ ()-->
+	<div data-x='quiz:c'>
+		請檢閱下列程式。
+		<div class='frame'><div class='cb' style='position:relative;'>
+			<div>def petStore(category, species, breed = 'none'):</div>
+			<div class="cb">
+				<div>"""Display information about a pet."""</div>
+				<div>print(f'\nYou have selected an animal from the {category} category.')</div>
+				<div>if breed == 'none':</div>
+				<div class="cb">print(f'The {category} you selected is a {species}')</div>
+				<div>else:</div>
+				<div class="cb">print(f'The {category} you selected is a {species} {breed}')</div>
+				<div>print(f'\nThe {category} would make a great pet!')</div>
+			</div>
+			<br/>
+			<div>category = input('What animal category are you interested in?')</div>
+			<div>species = input('What species are they from (canine, feline, Scarlet Macaw, Blue and Gold Macaw?')</div>
+			<div>if category == 'dog' or category =='cat':</div>
+			<div class="cb">
+				<div>breed = input('What breed are you interested in?')</div>
+				<div>petStore(category, species, breed)</div>
+			</div>
+			<div>else:</div>
+			<div class="cb">petStore(category, species)</div>
+			<div>petStore(breed='Maltese',species='Canine', category='dog')</div>
+			<div>petStore('bird',species='Scarlet Macaw')</div>
+			<div style="position:absolute;left:0;top:0;color:red;">01<br/>02<br/>03<br/>04<br/>05<br/>06<br/>07<br/>08<br/>09<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18</div>
+		</div></div>
+		<div data-x='quiz:s'>
+			此函式(petStore)會傳回一個值。
+			<div class='cols'><div data-o='X'>正確</div><div data-o='O'>錯誤</div></div>
+		</div>
+		<div data-x='quiz:s'>
+			第14和17行的函式呼叫無效。
+			<div class='cols'><div data-o='X'>正確</div><div data-o='O'>錯誤</div></div>
+		</div>
+		<div data-x='quiz:s'>
+			第16和18行的函式呼叫會產生錯誤
+			<div class='cols'><div data-o='X'>正確</div><div data-o='O'>錯誤</div></div>
+		</div>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_CS,Q_ITS'>
+	<!--{{{ ()-->
+	<div data-x='quiz:c'>
+		下列函式會計算使用指數之運算式的值。
+		<div class="frame"><div class="cb" style="position:relative;">
+			<div>def calc_power(a, b):</div>
+			<div class="cb">return a**b</div>
+			<div>base = input('Enter the number for the base:')</div>
+			<div>exponent = input('Enter the number for the exponent:')</div>
+			<div>result = calc_power(base, exponent)</div>
+			<div>print('The result is ' + result)</div>
+			<div style="position:absolute;left:0;top:0;color:red;">01<br/>02<br/>03<br/>04<br/>05<br/>06</div>
+		</div></div>
+		<div data-x='quiz:s'>
+			該程式碼將在第 03 行和第 04 行產生錯誤。
+			<table width='100%'><tr><th width='50%' data-o='X'>正確</th><th data-o='O'>錯誤</th></tr></table>
+		</div>
+		<div data-x='quiz:s'>
+			該程式碼將在第 02 行和第 05 行產生錯誤。
+			<table width='100%'><tr><th width='50%' data-o='O'>正確</th><th data-o='X'>錯誤</th></tr></table>
+		</div>
+		<div data-x='quiz:s'>
+			程式碼將正確地將資料輸出到控制台。
+			<table width='100%'><tr><th width='50%' data-o='X'>正確</th><th data-o='O'>錯誤</th></tr></table>
+		</div>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_CS,Q_ITS'>
+	<!--{{{ ()-->
+	<div data-x='quiz:c'>
+		您正在撰寫一個函式來增加遊戲內的玩家分數，此函式具有下列需求:
+		<ul>
+			<li>如果沒有針對points指定任何值,則points的起始值為一。</li>
+			<li>如果bonus為True,則points必須加倍。</li>
+		</ul>
+		您撰寫了以下這段程式碼。
+		<div class="frame"><div class="cb" style="position:relative;">
+			<div>def increment_score(score, bonus, points):</div>
+			<div class="cb">
+				<div>if bonus == True:</div>
+				<div class="cb">points = points * 2</div>
+				<div>score = score + points</div>
+				<div>return score</div>
+			</div>
+			<div>points = 5</div>
+			<div>score = 10</div>
+			<div>new_score = increment_score(score, True, points)</div>
+			<div style="position:absolute;left:0;top:0;color:red;">01<br/>02<br/>03<br/>04<br/>05<br/>06<br/>07<br/>08</div>
+		</div></div>
+
+		<div data-x='quiz:s'>
+			為了符合需求,您必須將第01行變更為:
+			<div class="cb">def increment_score(score, bonus, points =1):</div>
+			<div class='cols'><div data-o='O'>正確</div><div data-o='X'>錯誤</div></div>
+		</div>
+		<div data-x='quiz:s'>
+			以預設值定義任何參數之後,右側的所有參數也必須使用預設值來定義。
+			<div class='cols'><div data-o='O'>正確</div><div data-o='X'>錯誤</div></div>
+		</div>
+		<div data-x='quiz:s'>
+			如果您不變更第01行,而且僅使用兩個參數來呼叫此函式,第三個參數的值將為None。
+			<div class='cols'><div data-o='X'>正確</div><div data-o='O'>錯誤</div></div>
+		</div>
+		<div data-x='quiz:s'>
+			第03行也會修改在第06行宣告之變數points的值。
+			<table width='100%'><tr><th width='50%' data-o='X'>正確</th><th data-o='O'>錯誤</th></tr></table>
+		</div>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_CS,Q_ITS'>
+	<!--{{{ ()-->
+	<div data-x='quiz:c'>
+		對於下列每一項有關以下函式的敘述,請選取[正確]或[錯誤]。
+		<div class="cb frame">
+			<div>def grosspay(hours=40,rate=25,pieces=0,piecerate=0,salary=0):</div>
+			<div class="cb">
+				<div>overtime=0</div>
+				<div>if pieces &gt; 0:</div>
+				<div class="cb">return pieces * piecerate</div>
+				<div>if salary &gt; 0:</div>
+				<div class="cb">pass</div>
+				<div>if hours &gt; 40:</div>
+				<div class="cb">
+					<div>overtime = (hours-40) * (1.5 * rate)</div>
+					<div>return overtime + (40 * rate)</div>
+				</div>
+				<div>else:</div>
+				<div class="cb">return hours * rate</div>
+			</div>
+		</div>
+		<div data-x='quiz:s'>
+			grosspay()的函式呼叫會產生語法錯誤。
+			<div class='cols'><div data-o='X'>正確</div><div data-o='O'>錯誤</div></div>
+		</div>
+		<div data-x='quiz:s'>
+			grosspay(salary=50000)的函式呼叫不會傳回任何結果。
+			<div class='cols'><div data-o='X'>正確</div><div data-o='O'>錯誤</div></div>
+		</div>
+		<div data-x='quiz:s'>
+			grosspay(pieces=500, piecerate=4)的函式呼叫所傳回的結果為2000。
+			<div class='cols'><div data-o='O'>正確</div><div data-o='X'>錯誤</div></div>
+		</div>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_CS,Q_ITS'>
+	<!--{{{ ()-->
+	<div data-x='quiz:c'>
+		某間自行車公司正在建立一個程式,讓客戶能夠記錄騎乘英里數。<br />
+		此程式會根據客戶所記錄的英里數傳送訊息。<br />
+		<div class="frame"><div class='cb'>
+			<div data-x='quiz:s' class='QR_'>
+				<span class='HT'>點擊展開</span>
+				<div data-o='O'>def get_name():</div>
+				<div data-o='X'>def get_name(biker):</div>
+				<div data-o='X'>def get_name(name):</div>
+			</div>
+			<div class="cb">
+				<div>name = input("What is your name? ")</div>
+				<div>return name</div>
+			</div>
+			<div data-x='quiz:s' class='QR_'>
+				<span class='HT'>點擊展開</span>
+				<div data-o="X">def get_calories():</div>
+				<div data-o="X">def get_calories(miles, burn_rate):</div>
+				<div data-o="O">def get_calories(miles, calories_per_mile):</div>
+			</div>
+			<div class="cb">
+				<div>calories = miles * calories_per_mile</div>
+				<div>return calories</div>
+			</div>
+			<div>distance = int(input("How many miles did you bike this week? "))</div>
+			<div>burn_rate = 50</div>
+			<div>biker=get_name()</div>
+			<div>calories_burned = calc_calories(distance, burn_rate)</div>
+			<div>print(biker, ", you burned about ", calories_burned, " calories.")</div>
+		</div></div>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_CS,Q_ITS'>
+	<!--{{{ Document String -->
+	<div data-x='quiz:s'>
+		請問哪些字元代表文件字串的開頭和結尾?
+		<div data-o="X">單引號(')</div>
+		<div data-o="X">雙引號(")</div>
+		<div data-o="X">兩個雙引號("")</div>
+		<div data-o="O">三個雙引號(""")</div>
+	</div>
+	<br/>
+	<div data-x='quiz:s'>
+		在記錄函式時,文件字串的標準位置在哪裡?
+		<div data-o="X">在程式檔案的開頭</div>
+		<div data-o="X">在函式上方</div>
+		<div data-o="O">緊湊在函式標頭後面</div>
+		<div data-o="X">在函式的結尾</div>
+		<div data-o="X">在程式檔案的結尾</div>
+	</div>
+	<br/>
+	<div data-x='quiz:s'>
+		請檢閱下列函式:
+		<div class="cb frame"><div class='cb'>
+			<div>def cube(n):</div>
+			<div class="cb">
+				<div>""" Returns the cube of number n """</div>
+				<div>return n*n*n</div>
+			</div>
+		</div></div>
+		請問哪個命令可列印文件字串?
+		<div data-o="X">print(__doc__)</div>
+		<div data-o="X">print(cube(doc))</div>
+		<div data-o="O">print(cube.__doc__)</div>
+		<div data-o="X">print(cube(docstring))</div>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_CS'>
+	<h2>💻 模組: random</h2><!--{{{-->
+	<table class='ltable'><thead><tr>
+		<th>函式<div>參數</div></th>
+		<th>功能<div>範例</div></th>
+	</tr></thead><tbody><tr>
+		<th>randint<div>(n1, n2)</div></th>
+		<td>由 <strong>n1</strong> 到 <strong>n2</strong> 之間隨機取得一個整數
+			<div>7 ← r.randint(1, 10)</div>
+		</td>
+	</tr><tr>
+		<th>randrange<div>(n1, n2, n3)</div></th>
+		<td>由 <strong>n1</strong> 到 <strong>n2</strong> 之間每隔 <strong>n3</strong> 的隨機數取得一個整數
+			<div>8 ← r.randrange(0, 11, 2)</div>
+		</td>
+	</tr><tr>
+		<th>uniform<div>(f1, f2)</div></th>
+		<td>由 <strong>f1</strong> 到 <strong>f2</strong> 之間隨機取得一個浮點數
+			<div>6.351865... ← r.uniform(1, 10)</div>
+		</td>
+	</tr><tr>
+		<th>random<div>()</div></th>
+		<td>由 <strong>0</strong> 到 <strong>1</strong> 之間隨機取得一個浮點數
+			<div>0.893398... ← r.random()</div>
+		</td>
+	</tr><tr>
+		<th>choice<div>( 字串 )</div></th>
+		<td>由字串中隨機取得一個字元
+			<div>'b' ← r.choice('abcdef')</td>
+		</td>
+	</tr><tr>
+		<th>sample<div>( 字串, n)</div></th>
+		<td>由字串中隨機取得 <strong>n</strong> 個字元
+			<div>['c', 'a', 'd'] ← r.sample(str1, 3)</div>
+		</td>
+	</tr><tr>
+		<th>shuffle<div>( 串列 )</div></th>
+		<td>為串列洗牌
+			<div>['ef', 'ab', 'cd'] ← r.shuffle(['ab','cd','ef'])</div>
+		</td>
+	</tr></tbody></table>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_CS,Q_ITS'>
+	<!--{{{ Random -->
+	<div data-x='quiz:m'>
+		您正在撰寫程式碼來產生一個最小值5與最大值11的隨機整數。<br/>
+		請問您應該使用哪兩個函式?
+		<div data-o="X">random.randint(5, 12)</div>
+		<div data-o="O">random.randrange(5, 12, 1)</div>
+		<div data-o="O">random.randint(5, 11)</div>
+		<div data-o="X">random.randrange(5, 11, 1)</div>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_CS,Q_ITS'>
+	<!--{{{ Random -->
+	<div data-x='quiz:c'>
+		<div>您正在撰寫一個程式來隨機指派房間(room_number)和團隊建立組別(group)以進行公司培訓活動。</div>
+		<div class="frame cb">
+			<div>import random</div>
+			<div>roomsAssigned=[1]</div>
+			<div>room_number=1</div>
+			<div>groupList=["Ropes","Rafting","Obstacle","Wellness"]</div>
+			<div>count=0</div>
+			<div>print("Welcome to CompanyPro's Team-Building Weekend!")</div>
+			<div>name=input("Please enter your name (q to quit)? ")</div>
+			<div>while name != 'q' and count &lt; 50:</div>
+			<div class='cb'>
+				<div>while room_number in roomsAssigned:</div>
+				<div class='cb'>
+					<div data-x='quiz:s' class='QR_'>
+						<span class='HT'>點擊展開</span>
+						<div data-o='X'>room_number=random(1,50)</div>
+						<div data-o='O'>room_number=random.randint(1,50)</div>
+						<div data-o='X'>room_number=random.shuffle(1,50)</div>
+						<div data-o='X'>room_number=random.random(1,50)</div>
+					</div>
+				</div>
+				<div>print(f"{name}, your room number is {room_number}")</div>
+				<div>roomsAssigned.append(room_number)</div>
+				<div data-x='quiz:s' class='QR_'>
+					<span class='HT'>點擊展開</span>
+					<div data-o='O'>group = random.choice(groupList)</div>
+					<div data-o='X'>group = random.randange(groupList)</div>
+					<div data-o='X'>group = random.shuffle(groupList)</div>
+					<div data-o='X'>group = random.sample(groupList)</div>
+				</div>
+				<div>print(f"You will meet with the {group} Group this afternoon. ")</div>
+				<div>count+=1</div>
+				<div>name=input("Please enter your name (Q to quit)? ")</div>
+			</div>
+		</div>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_CS'>
+	<h2>📅 Python datetime 模組常用方法</h2><!--{{{-->
+	<div>Python 的 datetime 模組主要包含了 date、time、datetime、timedelta 和 tzinfo 幾個核心類別。</div>
+	<div>以下表格著重於在程式設計中最常用到的 datetime 類別方法。</div>
+
+	<table border='1' cellspacing='0' cellpadding='8' width='100%' align='center' style='font-size:70%'><thead><tr>
+		<th><strong>類別/方法</strong><div class='sub'><strong>參數</strong><div></th>
+		<th><strong>說明</strong></th>
+		<th><strong>範例</strong><div class='sub'><strong>輸出結果</strong></div></th>
+	</tr></thead><tbody><tr>
+		<td><strong>datetime.now()</strong><div class='sub'>無</div></td>
+		<td>取得<strong>當前</strong>的本地日期和時間。</td>
+		<td>dt = datetime.now()<div class='sub'>2025-12-09 14:10:56.123456</div></td>
+	</tr><tr>
+		<td><strong>datetime.strptime()</strong><div class='sub'>string, format</div></td>
+		<td>將<strong>字串</strong>依指定格式解析成 datetime 物件。</td>
+		<td>dt = datetime.strptime("2025/12/09 14:10", "%Y/%m/%d %H:%M")<div class='sub'>2025-12-09 14:10:00</div></td>
+	</tr><tr>
+		<td><strong>.strftime()</strong><div class='sub'>format</div></td>
+		<td>將 datetime 物件格式化為<strong>字串</strong>輸出。</td>
+		<td>dt = datetime(2025, 12, 9, 14, 10)<br/>dt.strftime("%Y年%m月%d日")<div class='sub'>2025年12月09日</div></td>
+	</tr><tr>
+		<td><strong>.date()</strong><div class='sub'>無</div></td>
+		<td>從 datetime 物件中取出<strong>日期</strong>部分 (回傳 date 物件)。</td>
+		<td>dt = datetime.now()<br/>dt.date()<div class='sub'>2025-12-09</div></td>
+	</tr><tr>
+		<td><strong>.time()</strong><div class='sub'>無</div></td>
+		<td>從 datetime 物件中取出<strong>時間</strong>部分 (回傳 time 物件)。</td>
+		<td>dt = datetime.now()<br/>dt.time()<div class='sub'>14:10:56.123456</div></td>
+	</tr><tr>
+		<td><strong>.weekday()</strong><div class='sub'>無</div></td>
+		<td>回傳星期幾，<strong>週一為 0，週日為 6</strong>。</td>
+		<td>dt = datetime(2025, 12, 9) (週二)<br/>dt.weekday()<div class='sub'>1</div></td>
+	</tr><tr>
+		<td><strong>.isoweekday()</strong><div class='sub'>無</div></td>
+		<td>回傳星期幾，<strong>週一為 1，週日為 7</strong>。</td>
+		<td>dt = datetime(2025, 12, 9) (週二)<br/>dt.isoweekday()<div class='sub'>2</div></td>
+	</tr><tr>
+		<td><strong>timedelta</strong><div class='sub'>days, hours, etc.</div></td>
+		<td><strong>時間差</strong>計算。用於加減日期時間。</td>
+		<td>dt1 = datetime(2025, 12, 9)<br/>td = timedelta(days=7)<br/>dt2 = dt1 + td<div class='sub'>2025-12-16 00:00:00</div></td>
+	</tr></tbody></table>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_CS'>
+	<h2>📅 DateTime Format Codes</h2><!--{{{-->
+	<table border='1' cellspacing='1' cellpadding='8' align='center' style='font-size:70%'><thead><tr>
+		<th><strong>類別</strong></th>
+		<th><strong>代碼</strong></th>
+		<th><strong>意義</strong></th>
+		<th><strong>範例輸出</strong></th>
+	</tr></thead><tbody><tr>
+		<td><strong>年份</strong></td>
+		<td>%Y</td>
+		<td>帶世紀的年份</td>
+		<td>2025</td>
+	</tr><tr>
+		<td>&nbsp;</td>
+		<td>%y</td>
+		<td>不帶世紀的年份 (00-99)</td>
+		<td>25</td>
+	</tr><tr>
+		<td><strong>月份</strong></td>
+		<td>%m</td>
+		<td>月份，帶零填充的數字 (01-12)</td>
+		<td>12</td>
+	</tr><tr>
+		<td>&nbsp;</td>
+		<td>%B</td>
+		<td>月份的全稱 (依地區設定而定)</td>
+		<td>December</td>
+	</tr><tr>
+		<td>&nbsp;</td>
+		<td>%b</td>
+		<td>月份的縮寫名稱 (依地區設定而定)</td>
+		<td>Dec</td>
+	</tr><tr>
+		<td><strong>日</strong></td>
+		<td>%d</td>
+		<td>月份中的日期，帶零填充的數字 (01-31)</td>
+		<td>03</td>
+	</tr><tr>
+		<td>&nbsp;</td>
+		<td>%j</td>
+		<td>年份中的第幾天，帶零填充的數字 (001-366)</td>
+		<td>337</td>
+	</tr><tr>
+		<td>&nbsp;</td>
+		<td>%A</td>
+		<td>星期幾的全稱 (依地區設定而定)</td>
+		<td>Wednesday</td>
+	</tr><tr>
+		<td>&nbsp;</td>
+		<td>%a</td>
+		<td>星期幾的縮寫名稱 (依地區設定而定)</td>
+		<td>Wed</td>
+	</tr><tr>
+		<td>&nbsp;</td>
+		<td>%w</td>
+		<td>星期幾的數字 (0=星期日 到 6=星期六)</td>
+		<td>3</td>
+	</tr><tr>
+		<td><strong>小時</strong></td>
+		<td>%H</td>
+		<td>小時 (24 小時制)，帶零填充的數字 (00-23)</td>
+		<td>17</td>
+	</tr><tr>
+		<td>&nbsp;</td>
+		<td>%I</td>
+		<td>小時 (12 小時制)，帶零填充的數字 (01-12)</td>
+		<td>05</td>
+	</tr><tr>
+		<td><strong>分鐘</strong></td>
+		<td>%M</td>
+		<td>分鐘，帶零填充的數字 (00-59)</td>
+		<td>52</td>
+	</tr><tr>
+		<td><strong>秒數</strong></td>
+		<td>%S</td>
+		<td>秒數，帶零填充的數字 (00-61，包括閏秒)</td>
+		<td>17</td>
+	</tr><tr>
+		<td>&nbsp;</td>
+		<td>%f</td>
+		<td>微秒，作為小數點數字 (000000-999999)</td>
+		<td>000000 (如果未提供)</td>
+	</tr><tr>
+		<td><strong>上午/下午</strong></td>
+		<td>%p</td>
+		<td>地區設定中上午或下午的表示</td>
+		<td>PM</td>
+	</tr><tr>
+		<td><strong>時區</strong></td>
+		<td>%z</td>
+		<td>時區偏移量 (例如，-0500, +0800)</td>
+		<td>-0600 (對於 CST)</td>
+	</tr><tr>
+		<td>&nbsp;</td>
+		<td>%Z</td>
+		<td>時區名稱 (依地區設定而定)</td>
+		<td>CST (對於 Central Standard Time)</td>
+	</tr><tr>
+		<td><strong>組合</strong></td>
+		<td>%c</td>
+		<td>地區設定中合適的日期和時間表示</td>
+		<td>Wed Dec 3 17:52:17 2025</td>
+	</tr><tr>
+		<td>&nbsp;</td>
+		<td>%x</td>
+		<td>地區設定中合適的日期表示</td>
+		<td>12/03/25</td>
+	</tr><tr>
+		<td>&nbsp;</td>
+		<td>%X</td>
+		<td>地區設定中合適的時間表示</td>
+		<td>17:52:17</td>
+	</tr><tr>
+		<td>&nbsp;</td>
+		<td>%r</td>
+		<td>12 小時制時間 (等同於 %I:%M:%S %p)</td>
+		<td>05:52:17 PM</td>
+	</tr><tr>
+		<td>&nbsp;</td>
+		<td>%T</td>
+		<td>24 小時制時間 (等同於 %H:%M:%S)</td>
+		<td>17:52:17</td>
+	</tr><tr>
+		<td><strong>特殊</strong></td>
+		<td>%%</td>
+		<td>字面上的百分比符號</td>
+		<td>%</td>
+	</tr></tbody></table>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_CS,Q_ITS'>
+	<!--{{{ DateTime -->
+	<div data-x='quiz:s'>
+		<div>請問下列程式執行後將輸出什麼 ?</div>
+		<div class="cb frame">
+			<div>import datetime</div>
+			<div>d = datetime.datetime(2017, 4, 7)</div>
+			<div>print( '{:%B-%d-%y}'.format(d) )</div>
+		</div>
+		<div data-o="X">04-07-17</div>
+		<div data-o="X">2017-APRIL-07</div>
+		<div data-o="O">APRIL-07-17</div>
+		<div data-o="X">04-07-2017</div>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_CS,Q_ITS'>
+	<!--{{{ DateTime-->
+	<div data-x='quiz:c'>
+		<div>您正在撰寫一個程式來顯示 My Healthy Delivery 的特價優惠。</div>
+		<div class="frame cb">
+			<div>import datetime</div>
+			<div>dailySpecials= ( "Spaghetti", "Macaroni &amp; Cheese", "Meatloaf",  "Fried Chicken" )</div>
+			<div>weekendSpecials=( "Lobster", "Prime Rib", "Parmesan-Crusted Cod" )</div>
+			<div># 擷取目前的日期。</div>
+			<div data-x='quiz:s' class='QR_'>
+				<span class='HT'>點擊展開</span>
+				<div data-o='X'>now=datetime()</div>
+				<div data-o='X'>now=datetime.date()</div>
+				<div data-o='O'>now=datetime.datetime.now()</div>
+				<div data-o='X'>now=new date()</div>
+			</div>
+			<div># 擷取工作日(即星期幾)的完整名稱。</div>
+			<div data-x='quiz:s' class='QR_'>
+				<span class='HT'>點擊展開</span>
+				<div data-o="O">today=now.strftime("%A")</div>
+				<div data-o="X">today=now.strftime("%B")</div>
+				<div data-o="X">today=now.strftime("%W")</div>
+				<div data-o="X">today=now.strftime("%Y")</div>
+			</div>
+			<div>print("My Healthy Eats Delivery")</div>
+			<div>if today == "Friday" or today=="Saturday" or today =="Sunday":</div>
+			<div class='cb'>
+				<div>print("The weekend specials include:")</div>
+				<div>for item in weekendSpecials:</div>
+				<div class='cb'>print(item)</div>
+			</div>
+			<div>else:</div>
+			<div class='cb'>
+				<div>print("The weekday specials include: ")</div>
+				<div>for item in dailySpecials:</div>
+				<div class='cb'>print(item)</div>
+			</div>
+			<div># 計算當週剩餘天數。</div>
+			<div data-x='quiz:s' class='QR_'>
+				<span class='HT'>點擊展開</span>
+				<div data-o='X'>dayleft=now-now.weekday()</div>
+				<div data-o='X'>dayleft=today-today.weekday()</div>
+				<div data-o='O'>dayleft=6-now.weekday()</div>
+				<div data-o='X'>dayleft=6-datetime.datetime.weekday()</div>
+			</div>
+			<div>print(f"Pricing specials change in {daysLeft} days")</div>
+		</div>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_CS'>
+<h2>類別 Class</h2>
+<div class='frame'><div class='cb green'>
+	<div>import datetime</div>
+	<div>class TradeLogger:</div>
+	<div class='cb blue'>
+		<div>def __init__(self, symbol: str, strategy_name: str):</div>
+		<div class='cb black'>
+			<div>self.symbol = symbol</div>
+			<div>self.strategy_name = strategy_name</div>
+			<div>self.filename = f"{symbol}_{datetime.date.today()}.log"</div>
+			<div>self.file = None</div>
+		</div>
+		<br/>
+		<div class='red'>## Context Manager Protocol ##</div>
+		<div>def __enter__(self):</div>
+		<div class='cb black'>
+			<div class='red'>"""進入 with 區塊時觸發：執行開檔動作"""</div>
+			<div>print(f"[系統訊號] 正在開啟日誌檔: {self.filename}")</div>
+			<div>self.file = open(self.filename, "a", encoding="utf-8")</div>
+			<div>return self  <span class='red'># 回傳物件本身給 'as' 後面的變數</span></div>
+		</div>
+		<br/>
+		<div>def __exit__(self, exc_type, exc_val, exc_tb):</div>
+		<div class='cb black'>
+			<div class='red'>"""離開 with 區塊時觸發：執行關檔動作"""</div>
+			<div>if self.file:</div>
+			<div class='cb brown'>
+				<div>self.file.close()</div>
+				<div>print(f"[系統訊號] 檔案 {self.filename} 已安全關閉。")</div>
+			</div>
+			<div class='red'># 如果有異常發生，可以在這裡處理 (exc_type 為異常類型)</div>
+		</div>
+		<br/>
+		<div class='red'>## String Representation (字串表示法) ##</div>
+		<div>def __repr__(self):</div>
+		<div class='cb black'>
+			<div class='red'>"""<br/>
+			供開發者偵錯使用。<br/>
+			慣例上回傳一個「能用來重新建立該物件」的字串。</br>
+			"""</div>
+			<div>return f"TradeLogger(symbol='{self.symbol}', strategy_name='{self.strategy_name}')"</div>
+		</div>
+		<br/>
+		<div>def log_trade(self, side: str, price: float, volume: int):</div>
+		<div class='cb black'>
+			<div ='red'>"""模擬寫入交易紀錄"""</div>
+			<div>timestamp = datetime.datetime.now().strftime("%H:%M:%S")</div>
+			<div>record = f"[{timestamp}] {side} | {price} | {volume} units\n"</div>
+			<div>self.file.write(record)</div>
+			<div>print(f"紀錄已寫入: {record.strip()}")</div>
+		</div>
+	</div>
+</div>
+</section>
+
+<section data-ks='P_CS'>
+<div class='frame'><div class='cb'>
+	<div class='red'># --- 實際應用範例 ---</div>
+	<div>if __name__ == "__main__":</div>
+	<div class='cb'>
+		<div class='red'># 使用 with 關鍵字自動管理資源</div>
+		<div class='blue'>with TradeLogger("TSMC", "MA_Cross") as logger:</div>
+		<div class='cb'>
+			<div class='red'># 進行交易寫入</div>
+			<div class='blue'>logger.log_trade("BUY", 605.0, 1000)</div>
+			<br/>
+			<div class='red'># 示範使用 format 與 !r (呼叫 __repr__)</div>
+			<div class='red'># 在金融報表或 Debug Log 中非常實用</div>
+			<div>print("\n--- 格式化輸出展示 ---")</div>
+			<div class='blue'>print("當前 logger 狀態: {!r}".format(logger))</div>
+			<div>print(f"Debug 資訊 (f-string): {logger!r}")</div>
+		</div>
+	</div>
+</div></div>
+</section>
+
+<!--}}}-->
+
+<!--{{{ PART-5: IO: FileSystem -->
+<section data-ks='P_IO'>
+	<h2>周邊裝置架構</h2>
+	<div style='text-align:center;'><img src='IOArch.gif' style='width:80%'></div>
+</section>
+
+<section data-ks='P_IO'>
+	<h2>存取流程</h2>
+	<div style='text-align:center;'><img src='IOFlow.gif' style='width:45%'></div>
+	<ul>
+		<li>open close 必須成對出現，否則會產生占用系統資源的垃圾。</li>
+	</ul>
+</section>
+
+<section data-ks='P_IO'>
+	<h2>例外處理</h2>
+	<div style='text-align:center;'><img src='TryExceptSample.gif' style='width:60%'></div>
+</section>
+
+<section data-ks='P_IO'>
+	<h2>With</h2>
+	<div style='text-align:center;'><img src='WithFile.gif' style='width:45%'></div>
+	<table border='1' cellspacing='1' cellpadding='8' align='center'><tbody><tr>
+		<th>r</th>
+		<td>讀取模式，指標會置於開頭。(預設)</td>
+	</tr><tr>
+		<th>w</th>
+		<td>寫入模式，不存在時建立，存在時會被覆寫。</td>
+	</tr><tr>
+		<th>a</th>
+		<td>附加模式，不存在時建立，存在時會加入到尾端。</td>
+	</tr><tr>
+		<th>r+</th>
+		<td>讀寫模式，指標會置於開頭。</td>
+	</tr><tr>
+		<th>w+</th>
+		<td>讀寫模式，不存在時建立，存在時會被覆寫。</td>
+	</tr><tr>
+		<th>a+</th>
+		<td>讀寫模式，不存在時建立，存在時會加入到尾端。</td>
+	</tr></tbody></table>
+</section>
+
+<section data-ks='P_IO'>
+	<h2>讀檔</h2>
+	<div style='text-align:center;'><img src='ReadFile.gif' style='width:40%'></div>
+	<table border='1' cellspacing='1' cellpadding='8' align='center'><tbody><tr>
+		<th>EOF(End of File)<br/>檔案結尾</th>
+		<td>讀到空字串 “”</td>
+		<td>readline() == “”</td>
+	</tr><tr>
+		<th>New Line<br/>空白行</th>
+		<td>只讀到一個換行符號 “\n”</td>
+		<td>readline() == “\n”</td>
+	</tr></tbody></table>
+</section>
+
+<section data-ks='P_IO'>
+	<h2>寫檔</h2>
+	<div style='text-align:center;'><img src='WriteFile.gif' style='width:40%'></div>
+</section>
+
+<section data-ks='P_IO'>
+	<h2>完整的檔案處理</h2>
+	<div style='text-align:center;'><img src='FileIO.gif' style='width:90%'></div>
+</section>
+
+<section data-ks='P_IO,Q_ITS'>
+	<h2>程式執行引數 與 回傳值</h2><!--{{{-->
+	<div data-x='quiz:s'>
+		<div>Script.py 檔案包含下列程式碼：</div>
+		<div class='frame'><div class='cb'>
+			<div>import sys</div>
+			<div>print(sys.argv[2])</div>
+		</div></div>
+		<br/>
+		<div>您執行下列命令：</div>
+		<div class='frame'>
+			<div>python Script.py Cheese Bacon Bread</div>
+		</div>
+		<br/>
+		<div>請問此命令的輸出為何？</div>
+		<div class='cols'>
+			<div data-o='X'>Bread</div>
+			<div data-o='O'>Cheese</div>
+			<div data-o='X'>Script.py</div>
+			<div data-o='X'>Bacon</div>
+		</div>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_IO'>
+	<h2>裝置: 終端機</h2><!--{{{-->
+	<ul>
+		<li>輸入：<code>input(prompt)</code> 讀取一行字串（含結尾換行去除）</li>
+		<li>輸出：<code>print(*values, sep=' ', end='\n')</code> 將物件轉成字串後印出</li>
+		<li>注意：<code>input()</code> 回傳一律是 <code>str</code>，需要自行轉型</li>
+	</ul>
+	<div class='frame'>
+		<div>name = input('請輸入姓名：')</div>
+		<div>age = int(input('年齡：'))	# 以 int 轉型</div>
+		<div>print(f'{name} 您好，今年 {age} 歲。')</div>
+	</div>
+	<h3><code>input()</code> 基本參數</h3>
+	<div class='frame'>
+		<div>input()</div>
+		<div>input('請問如何稱呼: ')</div>
+	</div>
+	<h3><code>print()</code> 基本參數</h3>
+	<div class='frame'>
+		<div>print(10, 20, 30) <span class="hl-cm"># 預設 sep=' ', end='\n'</span></div>
+		<div>print(10, 20, 30, sep=<span class="hl-str">' | '</span>)</div>
+		<div>print(<span class="hl-str">"沒有換行"</span>, end=<span class="hl-str">""</span>); print(<span class="hl-str">"接在後面"</span>)</div>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_IO,Q_ITS'>
+	<!--{{{-->
+	<div data-x='quiz:s'>
+		<div>請問下列陳述式有何功能？</div>
+		<div class='frame'>
+			data = input()
+		</div>
+		<div data-o='X'>顯示電腦上的所有輸入周邊裝置</div>
+		<div data-o='X'>顯示允許使用者輸入的訊息方塊</div>
+		<div data-o='O'>允許使用者在主控台中輸入文字</div>
+		<div data-o='X'>建立HTML輸入元素</div>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_IO,Q_ITS'>
+	<!--{{{-->
+	<div data-x='quiz:s'>
+		<div>在 Python 程式中，如果希望使用者輸入時，即使用輸入了小數，程式也能自動轉為整數來進行運算。</div>
+		<div>你應該使用以下哪個程式碼片段 ？</div>
+		<div data-o='X'>total = input('請輸入總數？')</div>
+		<div data-o='O'>total = int(eval(input('請輸入總數？')))</div>
+		<div data-o='X'>total = str(input('請輸入總數？'))</div>
+		<div data-o='X'>total = float(input('請輸入總數？'))</div>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_IO'>
+	<h2>型別轉換</h2><!--{{{-->
+	<div><code>input(...)</code> 回傳的資料型態為<span class='red'>字串</span>，必須進行必要的型別轉換後才能進行運算。</div>
+	<div><code>print(...)</code> 引數的資料型態為<span class='red'>字串</span>，必須先轉換成字串才能輸出。</div>
+	<div class='frame'>
+		<div># 讀取三種資料，並做適當轉型</div>
+		<div>from datetime import datetime</div>
+		<div>price = float(input('收盤價：'))</div>
+		<div>shares = int(input('股數：'))</div>
+		<div>trade_date = datetime.strptime(input('交易日(YYYY-MM-DD)：'), '%Y-%m-%d')</div>
+		<div>print(price, shares, trade_date)</div>
+	</div>
+	<ul>
+		<li><code>int(s)</code>、<code>float(s)</code>：轉數值；<code>bool(s)</code> 以「是否為空字串」判斷 <small>（<code>bool('0')</code> 仍為 <code>True</code>）</small></li>
+		<li><code>datetime.strptime(text, fmt)</code>：字串→日期時間</li>
+		<li>建議先 <code>.strip()</code> 去除空白，再轉型；必要時 <code>try/except</code> 防呆</li>
+	</ul>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_IO'>
+	<!--{{{-->
+	<h2>三種格式化方式：總覽</h2>
+	<table>
+		<thead>
+			<tr><th>方法</th><th>語法</th><th>特色</th></tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><code>f'...{expr:spec}...'</code></td>
+				<td>Python 3.6+，最直覺；可內嵌運算 <small>(如 <code>{x*1.05:.2f}</code>)</small></td>
+				<td>可讀性佳、效能佳；推薦</td>
+			</tr>
+			<tr>
+				<td><code>'...{0:spec}...'.format(x)</code></td>
+				<td>較通用；可重複/具名參數</td>
+				<td>舊專案常見</td>
+			</tr>
+			<tr>
+				<td><code>'...%f' % x</code></td>
+				<td>C 風格；符號如 <code>%d</code>、<code>%f</code></td>
+				<td>相容舊碼；不建議新碼首選</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<h3>f-strings</h3>
+	<div class='frame'>
+		<div>x = 1234.5</div>
+		<div>print(<span class="hl-str">f'市價：{x:,.2f}'</span>)</div>
+		<div>dt = datetime(2025, 10, 15, 9, 30)</div>
+		<div>print(<span class="hl-str">f'時間：{dt:%Y-%m-%d %H:%M}'</span>)</div>
+	</div>
+	<h3><code>str.format()</code></h3>
+	<div>'市價：{0:,.2f} 股數：{1:d}'.format(1234.5, 3000)</div>
+	<h3>舊式 <code>%</code></h3>
+	<div>'市價：%,.2f 股數：%d' % (1234.5, 3000)</div>
+
+	<h3><code>str()</code> vs <code>repr()</code></h3>
+	<ul>
+		<li><code>str(obj)</code>：給人看的「友善」字串</li>
+		<li><code>repr(obj)</code>：給程式/除錯看的「精確」表示，常含引號、跳脫</li>
+	</ul>
+	<div class='frame'>
+		<div>print(str(`Hello<br/>World`))<span class="hl-cm"># 兩行</span></div>
+		<div>print(repr(`Hello<br/>World`))<span class="hl-cm"># 'Hello\nWorld'</span></div>
+	</div>
+
+	<h3>格式規格字（Spec）常用表</h3>
+	<table>
+		<thead>
+			<tr><th>類別</th><th>Spec/格式</th><th>說明</th><th>範例</th></tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>整數</td>
+				<td><code>d</code>、<code>b</code>、<code>o</code>、<code>x/X</code></td>
+				<td>十進位/二/八/十六進位</td>
+				<td><code>f'{255:d} {255:x}'</code> → <code>255 ff</code></td>
+			</tr>
+			<tr>
+				<td>浮點</td>
+				<td><code>f</code>、<code>e/E</code>、<code>g/G</code></td>
+				<td>小數/科學記號/自動</td>
+				<td><code>f'{3.14159:.2f}'</code> → <code>3.14</code></td>
+			</tr>
+			<tr>
+				<td>千分位</td>
+				<td><code>,</code></td>
+				<td>加千分位分隔</td>
+				<td><code>f'{1234567:,}'</code> → <code>1,234,567</code></td>
+			</tr>
+			<tr>
+				<td>寬度/對齊</td>
+				<td><code>{:&lt;10}</code>、<code>{:^10}</code>、<code>{:&gt;10}</code></td>
+				<td>左/置中/右對齊；可搭配填充字元如 <code>{:_&gt;10}</code></td>
+				<td><code>f'|{42:&lt;5}|{42:^5}|{42:&gt;5}|'</code></td>
+			</tr>
+			<tr>
+				<td>符號</td>
+				<td><code>+</code>、<code>-</code>、<code> </code></td>
+				<td>顯示正負號/只有負號/正留空白</td>
+				<td><code>f'{3:+d} {3:-d} {3: d}'</code> → <code>+3 3␠3</code></td>
+			</tr>
+			<tr>
+				<td>百分比</td>
+				<td><code>%</code></td>
+				<td>乘以 100 並加 % 號</td>
+				<td><code>f'{0.0765:.2%}'</code> → <code>7.65%</code></td>
+			</tr>
+			<tr>
+				<td>repr</td>
+				<td><code>!r</code></td>
+				<td>使用 <code>repr(obj)</code> 的顯示（含轉義）</td>
+				<td><code>f'{'A\nB'!r}'</code> → <code>'A\nB'</code></td>
+			</tr>
+		</tbody>
+	</table>
+
+	<h3>日期時間格式化常用表</h3>
+	<table>
+		<thead>
+			<tr><th>符號</th><th>意義</th><th>範例</th></tr>
+		</thead>
+		<tbody>
+			<tr><td><code>%Y</code></td><td>四位數年份</td><td>2025</td></tr>
+			<tr><td><code>%m</code> / <code>%d</code></td><td>月 / 日（零填充）</td><td>10 / 05</td></tr>
+			<tr><td><code>%H</code> <code>%M</code> <code>%S</code></td><td>時 分 秒（24h）</td><td>09 30 00</td></tr>
+			<tr><td><code>%b</code> / <code>%B</code></td><td>英文月縮寫 / 全名</td><td>Oct / October</td></tr>
+			<tr><td><code>%a</code> / <code>%A</code></td><td>星期縮寫 / 全名</td><td>Wed / Wednesday</td></tr>
+			<tr><td><code>%z</code> / <code>%Z</code></td><td>時區數值 / 名稱</td><td>+0800 / CST</td></tr>
+			<tr><td><code>ISO</code></td><td><code>dt.isoformat()</code></td><td>2025-10-15T09:30:00+08:00</td></tr>
+		</tbody>
+	</table>
+	<div class='frame'>
+		<div><span class="hl-kw">from</span> datetime <span class="hl-kw">import</span> datetime, timezone, timedelta</div>
+		<div>dt = datetime.<span class="hl-fn">now</span>()</div>
+		<div>print(dt.strftime(<span class="hl-str">'%Y/%m/%d %H:%M'</span>))</div>
+		<div>print(<span class="hl-str">f'ISO: {dt.isoformat()}'</span>)</div>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_IO'>
+	<!--{{{-->
+	<h2>例外處理</h2>
+	<div class='frame'>
+		<div><span class="hl-kw">try</span>:</div>
+		<div class='cb'>
+			<div>txt = <span class="hl-fn">input</span>(<span class="hl-str">"請輸入價格："</span>).strip().replace(<span class="hl-str">","</span>, <span class="hl-str">""</span>)</div>
+			<div>price = <span class="hl-fn">float</span>(txt)</div>
+			<div>print(<span class="hl-str">f'價格為 {price:.2f}'</span>)</div>
+		</div>
+		<div><span class="hl-kw">except</span> ValueError:</div>
+		<div class='cb'>print(<span class="hl-str">'格式錯誤，請輸入數字。如：1234.56'</span>)</div>
+	</div>
+
+	<h3>常見錯誤與除錯</h3>
+	<ul>
+		<li><code>ValueError</code>：輸入無法轉成指定型別 → 提示格式、加入 <code>try/except</code></li>
+		<li><code>TypeError</code>：<code>None</code> 或型別不符 → 在格式化前先 <code>is None</code> 檢查</li>
+		<li>字串格式錯誤 → 善用 <code>repr()</code> 看見跳脫字元</li>
+		<li>輸出對齊混亂 → 使用寬度與對齊規格（如 <code>{:&gt;10}</code>）</li>
+	</ul>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_IO,Q_ITS'>
+	<!--{{{-->
+	<div data-x='quiz:c'>
+		<div>對於下列每一項有關 try 陳述式的敘述，請選取 [正確] 或 [錯誤]。</div>
+		<div data-x='quiz:s'>
+			try 陳述式可以包含一個或多個 except 子句。
+			<div class='cols'><div data-o="O">正確</div><div data-o="X">錯誤</div></div>
+		</div>
+		<div data-x='quiz:s'>
+			try 陳述式可以包含 finally 子句，但不含 except 子句。
+			<div class='cols'><div data-o="O">正確</div><div data-o="X">錯誤</div></div>
+		</div>
+		<div data-x='quiz:s'>
+			try 陳述式可以包含 finally 子句以及 except 子句。
+			<div class='cols'><div data-o="O">正確</div><div data-o="X">錯誤</div></div>
+		</div>
+		<div data-x='quiz:s'>
+			try 陳述式可以包含一個或多個 finally 子句。
+			<div class='cols'><div data-o="X">正確</div><div data-o="O">錯誤</div></div>
+		</div>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_IO,Q_ITS'>
+	<!--{{{-->
+	<div data-x='quiz:c'>
+		<div>您需要撰寫執行下列工作的程式碼:<ul>
+			<li>呼叫process()函式。</li>
+			<li>如果process()函式擲回錯誤,則呼叫logError()函式。</li>
+			<li>呼叫process()函式之後一律呼叫displayResult()函式。</li>
+		</ul></div>
+		<div class='cb frame'>
+			<div class='QMix'>
+				<div data-x='quiz:s' class='QR_'>
+					<span class='HT'>點擊展開</span>
+					<div data-o="X">assert</div>
+					<div data-o="X">except</div>
+					<div data-o="X">finally</div>
+					<div data-o="X">raise</div>
+					<div data-o="O">try</div>
+				</div> :
+			</div>
+			<div class='cb'>process()</div>
+			<div class='QMix'>
+				<div data-x='quiz:s' class='QR_'>
+					<span class='HT'>點擊展開</span>
+					<div data-o="X">assert</div>
+					<div data-o="O">except</div>
+					<div data-o="X">finally</div>
+					<div data-o="X">raise</div>
+					<div data-o="X">try</div>
+				</div> :
+			</div>
+			<div class='cb'>logError()</div>
+			<div class='QMix'>
+				<div data-x='quiz:s' class='QR_'>
+					<span class='HT'>點擊展開</span>
+					<div data-o="X">assert</div>
+					<div data-o="X">except</div>
+					<div data-o="O">finally</div>
+					<div data-o="X">raise</div>
+					<div data-o="X">try</div>
+				</div> :
+			</div>
+  			<div class='cb'>displayResult()</div>
+		</div>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_IO,Q_ITS'>
+	<!--{{{-->
+	<div data-x='quiz:c'>
+		<div>您正在建立一個接受使用者輸入的程式。此程式必須將輸入轉型為整數，並且在無法轉型時正確處理錯誤。</div>
+		<div class="frame">
+			<div>while True:</div>
+			<div class='cb'>
+				<div class='QMix'>
+					<div data-x='quiz:s' class='QR_'>
+						<span class='HT'>點擊展開</span>
+						<div data-o="O">try</div>
+						<div data-o="X">else</div>
+						<div data-o="X">except</div>
+						<div data-o="X">raise</div>
+						<div data-o="X">finally</div>
+					</div>
+					:
+				</div>
+				<div class='cb'>
+					<div>x = int(input(“Please enter a number: “))</div>
+					<div>break</div>
+				</div>
+				<div class='QMix'>
+					<div data-x='quiz:s' class='QR_'>
+						<span class='HT'>點擊展開</span>
+						<div data-o="X">try</div>
+						<div data-o="X">else</div>
+						<div data-o="O">except</div>
+						<div data-o="X">raise</div>
+						<div data-o="X">finally</div>
+					</div>
+					ValueError :
+				</div>
+				<div class='cb'>print("Not a valid number. Try again...")</div>
+			</div>
+		</div>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_IO'>
+	<h2>單元測試 Unit Test</h2><!--{{{-->
+	<div style='text-align:center;'><img src='UnitTest.gif' width='80%'></img></div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_IO,Q_ITS'>
+	<!--{{{-->
+	<div data-x='quiz:c'>
+		<div>您為了要測試某個物件是否為特定類別的執行個體。撰寫了下列程式</div>
+		<div class="cb frame">
+			<div class='QMix'>
+				<div data-x='quiz:s' class='QR_'>
+					<span class='HT'>點擊展開</span>
+					<div data-o="X">define</div>
+					<div data-o="O">import</div>
+					<div data-o="X">include</div>
+					<div data-o="X">using</div>
+				</div>
+				unittest
+			</div>
+			<div class='QMix'>
+				class TestIsInstance(
+				<div data-x='quiz:s' class='QR_'>
+					<span class='HT'>點擊展開</span>
+					<div data-o="O">unittest.TestCase</div>
+					<div data-o="X">test.TestCase</div>
+					<div data-o="X">TestCase.unittest</div>
+					<div data-o="X">TestCase.test</div>
+				</div>
+				) :
+			</div>
+			<div class='cb'>
+				<div class='QMix'>
+					def 
+					<div data-x='quiz:s' class='QR_'>
+						<span class='HT'>點擊展開</span>
+						<div data-o="X">assert_isInstance(self)</div>
+						<div data-o="X">eval_isInstance(self)</div>
+						<div data-o="O">test_isInstance(self)</div>
+						<div data-o="X">try_isInstance(self)</div>
+					</div>
+				 	:
+				</div>
+				<div class='cb'>
+					<div data-x='quiz:s' class='QR_'>
+						<span class='HT'>點擊展開</span>
+						<div data-o="O">self.assertIsInstance(obj, cls, msg=None)</div>
+						<div data-o="X">test.assertIsInstance(obj, cls, msg=None)</div>
+						<div data-o="X">this.assertIsInstance(obj, cls, msg=None)</div>
+					</div>
+				</div>
+			</div>
+			<br/>
+			<div>if __name__ == '__main__':</div>
+			<div class="cb">unittest.main()</div>
+		</div>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_IO,Q_ITS'>
+	<!--{{{-->
+	<div data-x='quiz:c'>
+		請從每個下拉式清單中選取正確的選項以完成有關assert方法的敘述。
+		<div data-x='quiz:s'>
+			若要測試變數a與b的值是否相同,請使用:
+			<div data-o="O">assertEqual(a,b)</div>
+			<div data-o="X">assertTrue(x)</div>
+			<div data-o="X">assertIs(a,b)</div>
+			<div data-o="X">assertIn(a,b)</div>
+		</div>
+		<br/>
+		<div data-x='quiz:s'>
+			若要測試物件a與b是否相同,請使用:
+			<div data-o="X">assertEqual(a,b)</div>
+			<div data-o="X">assertTrue(x)</div>
+			<div data-o="O">assertIs(a,b)</div>
+			<div data-o="X">assertIn(a,b)</div>
+		</div>
+		<br/>
+		<div data-x='quiz:s'>
+			若要測試清單中是否存在某個值,請使用:
+			<div data-o="X">assertEqual(a,b)</div>
+			<div data-o="X">assertTrue(x)</div>
+			<div data-o="X">assertIs(a,b)</div>
+			<div data-o="O">assertIn(a,b)</div>
+		</div>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_IO'>
+	<h2>裝置: 檔案系統</h2><!--{{{-->
+	<!--}}}-->
+</section>
+
+<section data-ks='P_IO,Q_ITS'>
+	<!--{{{-->
+	<div data-x='quiz:s'>
+		執行下列程式，卻收到第03行的錯誤。請問造成此錯誤的原因是什麼?
+		<div class='frame'>
+			<div class='cb' style="position:relative">
+				<div>def read_file(file) :</div>
+				<div class="cb">
+					<div>line = None</div>
+					<div>if os.path.isfile(file) :</div>
+					<div class="cb">
+						<div>data = open(file,  r)</div>
+						<div>for line in data :</div>
+						<div class="cb">print(line)</div>
+					</div>
+				</div>
+				<div style="position:absolute;left:0;top:0;color:red;">01<br/>02<br/>03<br/>04<br/>05<br/>06<br/>06</div>
+			</div>
+		</div>
+		<div data-o="X">path 方法不存在 os 物件中。</div>
+		<div data-o="X">isfile 方法不接受單一參數。</div>
+		<div data-o="X">isfile 方法不存在 path 物件中。</div>
+		<div data-o="O">您需要匯入 os 程式庫。</div>
+	</div>
+	<!--}}}-->
+</section>
+
+<section data-ks='P_IO,Q_ITS'>
+	<div data-x='quiz:s'>
+		<div>您正在為學校開發一個 Python 應用程式。</div>
+		<div>此應用程式必須讀取並寫入資料至文字檔案。</div>
+		<div>如果檔案不存在,此應用程式就必須建立檔案。</div>
+		<div>如果檔案含有內容,此應用程式就必須刪除內容。</div>
+		<div>請問您應該使用哪個程式碼片段?</div>
+		<div data-o="O">open('local_data', 'w+')</div>
+		<div data-o="X">open('local_data', 'r')</div>
+		<div data-o="X">open('local_data', 'r+')</div>
+		<div data-o="X">open('local_data', 'w')</div>
+	</div>
+</section>
+
+<section data-ks='P_IO,Q_ITS'>
+	<div data-x='quiz:c'>
+		<div>某間公司需要有人協助更新他們的檔案系統。</div>
+		<div>您必須建立一個執行下列動作的簡易檔案操作程式：<ul>
+			<li>使用指定的名稱建立檔案。</li>
+			<li>將'End of listing'這段片語附加至檔案。</li>
+		</ul></div>
+		<div class="frame cb">
+			<div>import os</div>
+			<div class='QMix'>
+				file =
+				<div data-x='quiz:s' class='QR_'>
+					<span class='HT'>點擊展開</span>
+					<div data-o='X'>open('myFile.txt','w')</div>
+					<div data-o='O'>open('myFile.txt','a')</div>
+				</div>
+			</div>
+			<div class='QMix'>
+				<div data-x='quiz:s' class='QR_'>
+					<span class='HT'>點擊展開</span>
+					<div data-o="O">file.write</div>
+					<div data-o="X">file.add</div>
+				</div>
+				("End of listing")
+			</div>
+			<div>file.close()</div>
+		</div>
+	</div>
+</section>
+
+<section data-ks='P_IO,Q_ITS'>
+	<div data-x='quiz:sort'>
+		<div>您正在撰寫一個處理檔案的函式函式。</div>
+		<div>您需要確保此函式會在檔案不存在時傳回None。</div>
+		<div>如果檔案存在,此函式必須傳回第一行。</div>
+		<div>您撰寫了以下這段程式碼:</div>
+		<div class="cb frame">
+			<div>import os</div>
+			<div>def get_first_line(filename, mode):</div>
+			<div class='cb'>
+				<div data-o="2"><div class='cb'><div class='cb'>return file.readline()</div></div></div>
+				<div data-o="4"><div class='cb'>return None</div></div>
+				<div data-o="1"><div class='cb'>with open(filename, 'r') as file:</div></div>
+				<div data-o="3">else:</div>
+				<div data-o="0">if os.path.isfile(filename):</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section data-ks='P_IO,Q_ITS'>
+	<div data-x='quiz:s'>
+		<div>您撰寫了以下這段程式碼:</div>
+		<div>out.txt檔案不存在。</div>
+		<div>您執行程式碼。</div>
+		<div class="cb frame">
+			<div>import sys</div>
+			<div>try:</div>
+			<div class='cb'>
+				<div>file_in = open('in.txt', 'r')</div>
+				<div>file_out = open('out.txt', 'w+')</div>
+			</div>
+			<div>except IOError:</div>
+			<div class='cb'>print('cannot open', file_name)</div>
+			<div>else:</div>
+			<div class='cb'>
+				<div>i = 1</div>
+				<div>for line in file_in:</div>
+				<div class='cb'>
+					<div>print(line.rstrip())</div>
+					<div>file_out.write('line ' + str(i) + ': ' + line)</div>
+					<div>i = i + 1</div>
+				</div>
+				<div>file_in.close()</div>
+				<div>file_out.close()</div>
+			</div>
+		</div>
+		<div>請問以下哪一項敘述是正確的?</div>
+		<div data-o="O">此程式碼將正確執行,不會發生錯誤。</div>
+		<div data-o="X">此程式碼將執行,但會產生邏輯錯誤。</div>
+		<div data-o="X">此程式碼將產生執行階段錯誤。</div>
+		<div data-o="X">此程式碼將產生語法錯誤。</div>
+		<div class="answer">
+			<div>若 in.txt 不存在，例外處理時 file_name 為發生引用錯誤</div>
+			<div>否則可以正常執行無誤</div>
+		</div>
+	</div>
+</section>
+
+<section data-ks='P_IO,Q_ITS'>
+	<div data-x='quiz:c'>
+		<div>某間公司需要有人協助更新他們的檔案系統。您必須建立一個執行下列動作的簡易檔案操作程式:</div>
+		<ul>
+			<li>查看檔案是否存在</li>
+			<li>如果檔案存在,則顯示其內容。</li>
+		</ul>
+		<div class='frame'><div class="cb">
+			<div>import os</div>
+			<div class='QMix'>
+				if 
+				<div data-x='quiz:s' class='QR_'>
+					<span class='HT'>點擊展開</span>
+					<div data-o="X">isfile('myFile.txt'):</div>
+					<div data-o="X">os.exist('myFile.txt'):</div>
+					<div data-o="X">os.find('myFile.txt):</div>
+					<div data-o="O">os.path.isfile('myFile.txt'):</div>
+				</div>
+			</div>
+			<div class='cb'>
+				<div>file = open('myFile.txt)</div>
+				<div data-x='quiz:s' class='QR_'>
+					<span class='HT'>點擊展開</span>
+					<div data-o="X">output('myFile.txt')</div>
+					<div data-o="X">print(file.get('myFile.txt'))</div>
+					<div data-o="O">print(file.read())</div>
+					<div data-o="X">print('myFile.txt')</div>
+				</div>
+				<div>file.close()</div>
+			</div>
+		</div></div>
+	</div>
+</section>
+
+<section data-ks='P_IO,Q_ITS'>
+	<div data-x='quiz:c'>
+		<div>請檢閱下列程式碼片段：</div>
+		<div class="frame">
+			<div>f = open('python.txt', 'a')</div>
+			<div>f.write('This is a line of text.')</div>
+			<div>f.close()</div>
+		</div>
+		<div data-x='quiz:s'>
+			如果名稱為 python.txt 的檔案不存在，就會建立此檔案。
+			<div class='cols'><div data-o="O">正確</div><div data-o="X">錯誤</div></div>
+		</div>
+		<div data-x='quiz:s'>
+			此檔案中的資料會被覆寫。
+			<div class='cols'><div data-o="X">正確</div><div data-o="O">錯誤</div></div>
+		</div>
+		<div data-x='quiz:s'>
+			其他程式碼可以在這段程式碼執行完畢之後，開啟此檔案。
+			<div class='cols'><div data-o="O">正確</div><div data-o="X">錯誤</div></div>
+		</div>
+	</div>
+</section>
+<!--}}}-->
+
+<!--PART-X: Concurrency {{{ -->
+<section>
+	<h2><div>Concurrency and Parallelism</div> <div>併發與平行運算</div></h2>
+	<p>在 Python 中，<strong>多執行緒 (Multi-threading)</strong>、<strong>多處理程序 (Multiprocessing)</strong> 和 <strong>非同步 I/O (Asynchronous I/O)</strong> 都是實現高效率程式碼執行的重要機制，但它們在處理 <strong>併發 (Concurrency)</strong> 和 <strong>平行運算 (Parallelism)</strong> 的方式上有所不同。</p>
+	<p>理解它們的差異，特別是與 Python 的 <strong>全域解釋器鎖 (GIL)</strong> 之間的關係，是選擇正確工具的關鍵。</p>
+</section>
+
+<section>
+	<h3><div>Multi-threading</div> <div>(多執行緒)</div></h3>
+	<h4>功能與原理</h4>
+	<ul>
+		<li><strong>目標：</strong> 實現<strong>並發 (Concurrency)</strong>。</li>
+		<li><strong>模型：</strong> 搶佔式多工 (Preemptive Multitasking)。</li>
+		<li><strong>工作方式：</strong> 在單一處理程序內建立多個執行緒。執行緒共享記憶體空間。作業系統決定何時切換執行緒。</li>
+		<li><strong>與 GIL 的關係：</strong> Python 的 <strong>GIL</strong> 限制了在任何給定時間，只有一個執行緒可以執行 Python 位元碼。<ul>
+			<li><strong>I/O 密集型任務：</strong> 當執行緒執行 I/O 操作（例如等待網路回應或檔案讀寫）時，它會<strong>釋放 GIL</strong>，讓其他執行緒有機會執行 Python 程式碼。因此，執行緒適合 I/O 密集型任務，因為可以「重疊」 I/O 的等待時間。</li>
+			<li><strong>CPU 密集型任務：</strong> 由於 GIL 存在，多執行緒無法利用多核 CPU 實現真正的平行運算，效能提升有限，甚至可能因為頻繁的執行緒切換而降低效能。</li>
+		</ul></li>
+	</ul>
+	<h4>優缺點</h4>
+	<table border="1" cellspacing="0" cellpadding="3"><thead>
+		<tr>
+			<th>&nbsp;</th>
+			<th><strong>優點 (Advantages)</strong></th>
+			<th><strong>缺點 (Disadvantages)</strong></th>
+		</tr>
+	</thead><tbody>
+		<tr>
+			<td><strong>適用性</strong></td>
+			<td>適用於 <strong>I/O 密集型</strong> 任務。</td>
+			<td><strong>不適用於 CPU 密集型</strong> 任務 (受 GIL 限制)。</td>
+		</tr>
+		<tr>
+			<td><strong>記憶體</strong></td>
+			<td>執行緒共享記憶體，資料傳遞容易。</td>
+			<td>共享記憶體容易導致<strong>資料競爭</strong>，需使用鎖等同步機制，增加複雜性。</td>
+		</tr>
+		<tr>
+			<td><strong>資源/啟動</strong></td>
+			<td>執行緒是「輕量級」的，啟動開銷較小。</td>
+			<td>頻繁的<strong>上下文切換 (Context Switching)</strong> 仍有開銷。</td>
+		</tr>
+	</tbody></table>
+</section>
+
+<section>
+	<h3><div>Multiprocessing</div> <div>多處理程序 (多進程)</div></h3>
+	<h4>功能與原理</h4>
+	<ul>
+		<li><strong>目標：</strong> 實現真正的<strong>平行運算 (Parallelism)</strong>。</li>
+		<li><strong>模型：</strong> 搶佔式多工 (Preemptive Multitasking)。</li>
+		<li><strong>工作方式：</strong> 建立多個獨立的處理程序。每個處理程序有自己的 Python 解釋器和<strong>獨立的記憶體空間</strong>。作業系統將這些處理程序分配到不同的 CPU 核心上同時執行。</li>
+		<li><strong>與 GIL 的關係：</strong> 每個處理程序都有自己的 GIL。因此，不同的處理程序可以<strong>同時</strong>在不同的 CPU 核心上執行 Python 位元碼，從而繞開 GIL 的限制。</li>
+	</ul>
+	<h4>優缺點</h4>
+	<table border="1" cellspacing="0" cellpadding="3"><thead>
+		<tr>
+			<th>&nbsp;</th>
+			<th><strong>優點 (Advantages)</strong></th>
+			<th><strong>缺點 (Disadvantages)</strong></th>
+		</tr>
+	</thead><tbody>
+		<tr>
+			<td><strong>適用性</strong></td>
+			<td>適用於 <strong>CPU 密集型</strong> 任務，可充分利用多核 CPU。</td>
+			<td>不適合 I/O 密集型，開銷大於執行緒或非同步。</td>
+		</tr>
+		<tr>
+			<td><strong>隔離性</strong></td>
+			<td>記憶體獨立，<strong>沒有 GIL 限制</strong>。</td>
+			<td>資料傳遞複雜，需要使用<strong>程序間通訊 (IPC)</strong> 機制（例如 Queue 或 Pipe），開銷較大。</td>
+		</tr>
+		<tr>
+			<td><strong>穩定性</strong></td>
+			<td>一個處理程序崩潰不會影響其他處理程序。</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td><strong>資源/啟動</strong></td>
+			<td>處理程序是「重量級」的，啟動和切換開銷大。</td>
+			<td>消耗較多的系統資源。</td>
+		</tr>
+	</tbody></table>
+</section>
+
+<section>
+	<h3><div>Asynchronous I/O</div> <div>(非同步 I/O)</div></h3>
+	<h4>功能與原理</h4>
+	<ul>
+		<li><strong>目標：</strong> 實現高效的<strong>並發 (Concurrency)</strong>。</li>
+		<li><strong>模型：</strong> 協作式多工 (Cooperative Multitasking)。</li>
+		<li><strong>工作方式：</strong> 基於單一執行緒和<strong>事件迴圈 (Event Loop)</strong>。程式碼使用 async/await 關鍵字來定義<strong>協程 (Coroutines)</strong>。當一個協程遇到 await 並且需要等待 I/O 完成時，它會<strong>主動</strong>將控制權交還給事件迴圈，讓事件迴圈切換到其他已準備好的任務。</li>
+		<li><strong>與 GIL 的關係：</strong> 單執行緒模型，因此與 GIL <strong>不衝突</strong>，並且沒有執行緒切換的開銷。其效率來自於<strong>避免在 I/O 等待時閒置 CPU</strong>。</li>
+	</ul>
+	<h4>優缺點</h4>
+	<table border="1" cellspacing="0" cellpadding="3"><thead>
+		<tr>
+			<th>&nbsp;</th>
+			<th><strong>優點 (Advantages)</strong></th>
+			<th><strong>缺點 (Disadvantages)</strong></th>
+		</tr>
+	</thead><tbody>
+		<tr>
+			<td><strong>適用性</strong></td>
+			<td><strong>最適合高併發的 I/O 密集型</strong> 任務（如網路服務器、大量網路爬蟲）。</td>
+			<td><strong>不適用於 CPU 密集型</strong> 任務 (會阻塞整個事件迴圈)。</td>
+		</tr>
+		<tr>
+			<td><strong>資源/擴展性</strong></td>
+			<td>協程是極為「輕量級」的，可以輕鬆啟動數萬個任務。</td>
+			<td>僅適用於使用支援 async/await 的<strong>非阻塞型</strong> I/O 函式庫。</td>
+		</tr>
+		<tr>
+			<td><strong>複雜度</strong></td>
+			<td>避免了執行緒/程序中的鎖定問題。</td>
+			<td>程式碼需要使用 async/await 語法，具有<strong>非同步傳染性</strong>，可能需重寫部分同步程式碼。</td>
+		</tr>
+	</tbody></table>
+</section>
+
+<section>
+	<h3>總結比較</h3>
+	<table border="1" cellspacing="0" cellpadding="3" width="100%"><thead>
+		<tr>
+			<th><strong>特性 (Feature)</strong></th>
+			<th><strong>Multi-threading</strong></th>
+			<th><strong>Multiprocessing</strong></th>
+			<th><strong>Asynchronous I/O</strong></th>
+		</tr>
+	</thead><tbody>
+		<tr>
+			<td><strong>主要目標</strong></td>
+			<td>並發 (Concurrency)</td>
+			<td>平行運算 (Parallelism)</td>
+			<td>並發 (Concurrency)</td>
+		</tr>
+		<tr>
+			<td><strong>核心單元</strong></td>
+			<td>執行緒 (Thread)</td>
+			<td>處理程序 (Process)</td>
+			<td>協程 (Coroutine/Task)</td>
+		</tr>
+		<tr>
+			<td><strong>GIL 影響</strong></td>
+			<td>限制 CPU 密集型效能</td>
+			<td><strong>繞過 GIL</strong>，實現真正平行</td>
+			<td>無影響 (單執行緒)</td>
+		</tr>
+		<tr>
+			<td><strong>適用場景</strong></td>
+			<td><strong>I/O 密集型</strong> (中低併發)</td>
+			<td><strong>CPU 密集型</strong></td>
+			<td><strong>I/O 密集型</strong> (高併發)</td>
+		</tr>
+		<tr>
+			<td><strong>記憶體</strong></td>
+			<td>共享記憶體</td>
+			<td>獨立記憶體</td>
+			<td>共享記憶體 (單執行緒)</td>
+		</tr>
+		<tr>
+			<td><strong>開銷</strong></td>
+			<td>中等 (啟動、切換)</td>
+			<td><strong>高</strong> (啟動、IPC)</td>
+			<td><strong>低</strong> (協程切換)</td>
+		</tr>
+		<tr>
+			<td><strong>程式碼風格</strong></td>
+			<td>傳統同步程式碼</td>
+			<td>傳統同步程式碼</td>
+			<td>需使用 async/await 關鍵字</td>
+		</tr>
+	</tbody></table>
+</section>
+<!--PART-X: Concurrency }}}-->
+
+<!--PART-X: IO: Networking {{{ -->
+<section data-ks='P_IO'>
+	<h2><div>Networking</div> <div>網路</div></h2>
+</section>
+<!--PART-X: Networking }}}-->
+
+<!--PART-X: IO: GPIO {{{ -->
+<section data-ks='P_IO'>
+	<h2><div>GPIO - General Purpose Input/Output</div> <div>通用目的資料輸出入</div></h2>
+	<div>以 Raspberry PI Zero 為例</div>
+</section>
+
+<section data-ks='P_IO'>
+	<h2><div>I<sup>2</sup>C - Inter-Integrated Circuit</div> <div>內部整合電路 (I平方C)</div></h2>
+	<div>以 Raspberry PI Zero 為例</div>
+</section>
+
+<section data-ks='P_IO'>
+	<h2><div>SPI - Serial Peripheral Interface Bus</div> <div>(序列周邊介面)</div></h2>
+	<div>以 Raspberry PI Zero 為例</div>
+</section>
+<!--PART-X: GPIO }}}-->
+
+</div>
+</body>
+</html>
