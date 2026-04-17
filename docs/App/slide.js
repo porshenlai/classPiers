@@ -453,28 +453,10 @@ button:hover {border-color:#90a4ae;}
 
 		const content=this.Content;
 
-		// TODO
-		if ('quizgen'===Args.f) {
-			const CE=[];
-			function aq(C,e) {
-				const se=document.createElement("section")
-				se.appendChild(e);
-				C.push(se);
-				return C;
-			}
-			function shuffle(array) {
-				for (let i = array.length - 1; i > 0; i--) {
-					const j = Math.floor(Math.random() * (i + 1));
-					[array[i], array[j]] = [array[j], array[i]]; // Swap elements
-				}
-				return array;
-			}
-			Array.from(content.querySelectorAll('[data-x^="quiz:c"]')).reduce(aq, CE);
-			Array.from(content.querySelectorAll('[data-x^="quiz:"]')).reduce(aq, CE);
-			shuffle(CE); // TODO shuffle
-			Array.from(content.querySelectorAll('section')).forEach((e)=>content.removeChild(e));
-			CE.forEach((e)=>content.appendChild(e));
-		}
+		if (Args.xf)
+			await (await loadScript(
+					currentScript.getAttribute("src").replace(/\.js/,`_${Args.xf}.js`)
+			))(content) ;
 
 		// TOREMOVE {{{
 		await Promise.all(Array.from(content.querySelectorAll('[X]')).reduce((R,e)=>{
